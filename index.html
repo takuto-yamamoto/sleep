@@ -9,7 +9,8 @@
 <meta name="apple-mobile-web-app-title" content="ねむり帳">
 <meta name="theme-color" content="#000000">
 <title>ねむり帳</title>
-<link rel="apple-touch-icon" id="touchIcon">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
 <style>
 :root{--bg:#000;--fg:#fff;--sub:#cfcfcf;--card:#151515;--line:#303030;--muted:#7d7d7d}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -88,6 +89,7 @@ canvas{display:block;width:100%}
     <div class="brand"><span class="moon"></span>ねむり帳</div>
     <div class="clock" id="hClock">--:--</div>
     <div class="date" id="hDate"></div>
+    <div id="hNotice"></div>
     <div id="hDebt"></div>
     <div id="hMain"></div>
     <div id="hLast"></div>
@@ -127,12 +129,17 @@ canvas{display:block;width:100%}
       <p class="note">睡眠負債は、この目標に足りなかった分から計算します。</p>
     </div>
     <div class="card">
+      <div class="lbl">自分に合う睡眠時間</div>
+      <div id="sSuggest"></div>
+    </div>
+    <div class="card">
       <div class="lbl">データ</div>
       <button class="btn" id="exp">書き出す（バックアップ）</button>
       <button class="btn" id="impBtn">読み込む</button>
       <input type="file" id="imp" accept="application/json,.json" hidden>
       <button class="btn danger" id="wipe">すべて消す</button>
-      <p class="note">記録はこのスマホの中だけに保存されます。月に1回くらい書き出しておくと安心です。</p>
+      <p class="note">記録はこのスマホの中だけに保存されます。月に1回くらい書き出しておくと安心です。書き出すときは「“ファイル”に保存」を選んでください。</p>
+      <p class="note" id="sLastBk"></p>
     </div>
     <div class="card">
       <div class="lbl">使い方のコツ（iPhone）</div>
@@ -191,6 +198,15 @@ canvas{display:block;width:100%}
     <div class="split" id="mSplit"></div>
     <div class="debtWord" id="mDebt" style="margin-top:16px"></div>
   </div>
+  <button class="btn" id="mFixBtn">ねた・おきた時刻を直す</button>
+  <div class="card" id="mFix" style="display:none">
+    <p class="note" style="margin:0 0 14px">起きてからしばらくして「起きた」を押したときは、本当に起きた時刻に直してください。そのままだと、その間も眠っていたことになります。</p>
+    <label class="lbl" for="mStart">ねた時刻</label>
+    <input type="time" class="field" id="mStart">
+    <label class="lbl" for="mEnd">おきた時刻</label>
+    <input type="time" class="field" id="mEnd">
+    <button class="btn primary" id="mFixGo">直す</button>
+  </div>
   <h2>今朝の気分は？</h2>
   <div class="rate" id="mRate"></div>
   <button class="btn primary" id="mSave" style="margin-top:30px">記録する</button>
@@ -225,7 +241,7 @@ const KEY='nemuri-v1';
 const RATE=['','ぐったり','ねむい','ふつう','よい','すっきり'];
 const MOTION_TH=.15; // 1秒の揺れがこれを超えたら「動いた」とする
 const WD='日月火水木金土';
-const defaults=()=>({settings:{goal:450},records:[],active:null,pending:null});
+const defaults=()=>({settings:{goal:450},records:[],active:null,pending:null,lastBackup:null});
 let db=load(), S=null, period=7, editing=null;
 
 function load(){
@@ -248,6 +264,31 @@ const std=a=>{if(a.length<2)return 0;const m=avg(a);return Math.sqrt(avg(a.map(v
 const sameDay=(a,b)=>a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();
 const toLocalInput=d=>{d=new Date(d);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes())};
 const sorted=()=>[...db.records].sort((a,b)=>new Date(b.end)-new Date(a.end));
+// 時刻（HH:MM）を、元の日時にいちばん近い日付に当てはめる
+function atNear(orig,t){
+  const [h,m]=t.split(':').map(Number);let best=null;
+  for(const dd of [-1,0,1]){const d=new Date(orig);d.setDate(d.getDate()+dd);d.setHours(h,m,0,0);if(!best||Math.abs(d-orig)<Math.abs(best-orig))best=d}
+  return best;
+}
+// 時刻を直したとき、動きのデータも新しい時間に合わせて切り詰める（消さない）
+function reframe(r,ns,ne){
+  const mv=r.motion||[];
+  if(mv.length&&r.start){
+    const off=Math.round((ns-new Date(r.start))/60000),len=Math.max(0,Math.round((ne-ns)/60000)),out=[];
+    for(let i=0;i<len;i++){const j=i+off;out.push(j>=0&&j<mv.length?mv[j]:null)}
+    r.motion=out.some(v=>v!=null)?out:[];
+  }
+  r.start=ns.toISOString();r.end=ne.toISOString();
+}
+function checkTimes(st,en){
+  if(isNaN(st)||isNaN(en)){toast('時刻を入れてください');return false}
+  if(en<=st){toast('おきた時刻が、ねた時刻より前です');return false}
+  if(en-st>20*3600e3){toast('20時間をこえています。日付を確かめてください');return false}
+  if(en-Date.now()>60000){toast('おきた時刻が、いまより後になっています');return false}
+  return true;
+}
+const isIOS=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const isStandalone=navigator.standalone===true||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches);
 let tT;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('on'),2600)}
 function openOv(id){$('#ov-'+id).classList.add('on');$('#ov-'+id).scrollTop=0}
 function closeOv(id){$('#ov-'+id).classList.remove('on')}
@@ -308,6 +349,23 @@ function debtAt(day,map){
     n++;d=Math.max(0,d+g-v);
   }
   return{debt:d,nights:n};
+}
+// 直近14日（今日をのぞく）で、記録のない日。最初の記録より前は数えない
+function missingDays(){
+  if(!db.records.length)return[];
+  const map=nightMap(),first=new Date(Math.min(...db.records.map(r=>+new Date(r.end))));first.setHours(0,0,0,0);
+  const today=new Date();today.setHours(0,0,0,0);const out=[];
+  for(let i=13;i>=1;i--){const d=new Date(today);d.setDate(d.getDate()-i);if(d<first)continue;if(!map.has(dkey(d)))out.push(d)}
+  return out;
+}
+// 自分に合う睡眠時間：直近60日で、気分4〜5（すっきり起きられた）日の睡眠時間の平均
+function suggestGoal(){
+  const since=Date.now()-60*864e5;
+  const rated=db.records.filter(r=>r.rating&&+new Date(r.end)>=since);
+  const good=rated.filter(r=>r.rating>=4);
+  if(rated.length<7||good.length<3)return{ready:false,need:Math.max(7-rated.length,0),needGood:Math.max(3-good.length,0)};
+  const m=avg(good.map(r=>analyze(r).sleepMin));
+  return{ready:true,min:Math.min(600,Math.max(300,Math.round(m/15)*15)),n:good.length,rated:rated.length};
 }
 const debtWord=m=>m<60?'ほとんどありません':m<180?'少したまっています':m<420?'たまっています':'かなりたまっています';
 
@@ -441,8 +499,19 @@ function showMorning(){
   const after=debtAt(new Date(),nightMap(r)).debt,df=Math.round(a.sleepMin-db.settings.goal);
   $('#mDebt').innerHTML='いまの睡眠負債 '+(after?dur(after):'なし')+'<br><span class="sub" style="font-weight:400">昨夜は目標より'+(df<0?dur(-df)+'少なめ':df>0?dur(df)+'多め':'ぴったり')+'</span>';
   buildRate($('#mRate'),r.rating,v=>{r.rating=v;save()});
-  openOv('morning');
+  $('#mStart').value=pad(new Date(r.start).getHours())+':'+pad(new Date(r.start).getMinutes());
+  $('#mEnd').value=pad(new Date(r.end).getHours())+':'+pad(new Date(r.end).getMinutes());
+  if(!$('#ov-morning').classList.contains('on'))openOv('morning');
 }
+$('#mFixBtn').onclick=()=>{const f=$('#mFix');f.style.display=f.style.display==='none'?'':'none';if(f.style.display==='')f.scrollIntoView({behavior:'smooth',block:'center'})};
+$('#mFixGo').onclick=()=>{
+  const r=db.pending;if(!r)return;
+  if(!$('#mStart').value||!$('#mEnd').value){toast('時刻を入れてください');return}
+  const ns=atNear(new Date(r.start),$('#mStart').value),ne=atNear(new Date(r.end),$('#mEnd').value);
+  if(!checkTimes(ns,ne))return;
+  reframe(r,ns,ne);save();
+  $('#mFix').style.display='none';showMorning();$('#ov-morning').scrollTop=0;toast('直しました');
+};
 $('#mSave').onclick=()=>{
   const r=db.pending;if(!r)return;
   db.records.push(r);db.pending=null;save();
@@ -571,17 +640,32 @@ function summaryCard(r){
 }
 function renderHome(){
   const A=db.active,m=$('#hMain');
-  const D=debtAt(new Date());
+  const D=debtAt(new Date()),miss=missingDays();
+  const notes=[];
+  if(isIOS&&!isStandalone)notes.push(`<div class="card"><div class="lbl">はじめに：ホーム画面に追加してください</div>
+    <p class="note" style="margin-top:0">Safariのまま使うと、しばらく開かなかったときに記録が消えることがあります。</p>
+    <ol class="tips" style="margin-top:12px"><li>Safariの共有ボタン（□に↑のマーク）を押します。見つからないときは「…」を押します。</li><li>「ホーム画面に追加」を押します。</li><li>これからは、ホーム画面の「ねむり帳」から開きます。</li></ol>
+    ${db.records.length?'<p class="note">ここまでの記録は、設定 →「書き出す」で保存し、ホーム画面のねむり帳で「読み込む」と移せます。</p>':''}</div>`);
+  const bkBase=db.lastBackup||(db.records.length?new Date(Math.min(...db.records.map(r=>+new Date(r.end)))).toISOString():null);
+  const bkDays=bkBase?Math.floor((Date.now()-new Date(bkBase))/864e5):0;
+  if(db.records.length>=7&&bkDays>=30)notes.push(`<div class="card"><div class="lbl">${db.lastBackup?'前回のバックアップから'+bkDays+'日たちました':'まだバックアップしていません'}</div>
+    <p class="note" style="margin-top:0">スマホが壊れたときや機種変更のときのために、記録を書き出しておきましょう。</p>
+    <button class="btn" id="hBackup" style="margin-top:14px">いま書き出す</button></div>`);
+  $('#hNotice').innerHTML=notes.join('');
+  if($('#hBackup'))$('#hBackup').onclick=doExport;
   $('#hDebt').innerHTML=D.nights?`<div class="card center">
       <div class="sub">いまの睡眠負債</div>
       <div class="debtNum">${bigDur(D.debt)}</div>
       <div class="debtWord">${debtWord(D.debt)}</div>
       <p class="note">${D.debt<30?'この調子です。':D.debt<=420?`毎日あと30分多く寝ると、約${Math.ceil(D.debt/30)}日で返せます。`:'一度に取り返そうとせず、まずは毎日30分早く寝ることから始めましょう。'}</p>
       <p class="note">直近14日のうち${D.nights}日分の記録から計算${D.nights<7?'（記録が増えるほど正確になります）':''}</p>
+      ${miss.length?`<button class="btn" id="hMiss" style="margin-top:16px">記録のない日が${miss.length}日あります<br><span style="font-weight:400;font-size:1rem">手で入力する</span></button>
+      <p class="note">記録のない日は計算に入らないので、負債が少なく見えます。</p>`:''}
     </div>`:'';
+  if($('#hMiss'))$('#hMiss').onclick=()=>openEdit(null,miss[miss.length-1]);
   if(!A){
     m.innerHTML=`<button class="btn primary big" id="goSleep">おやすみ</button>
-      <p class="center sub">目標 ${dur(db.settings.goal)}</p>`;
+      <p class="center sub">目標 ${dur(db.settings.goal)}</p>${(()=>{const g=suggestGoal();return g.ready&&Math.abs(g.min-db.settings.goal)>=30?`<p class="note center">記録から見ると、あなたに合う睡眠時間は約${dur(g.min)}です。<br>設定で目標を変えられます。</p>`:''})()}`;
     $('#goSleep').onclick=()=>openOv('start');
   }else if(S){
     m.innerHTML=`<div class="card center"><div class="sub">計測中</div><div class="big-num" id="hElapsed">${dur((Date.now()-new Date(A.start))/60000)}</div><div class="sub">${hm(A.start)} から</div></div>
@@ -644,16 +728,17 @@ function renderHist(){
 }
 function renderAll(){
   renderHome();
+  renderSettings();
   if($('#v-hist').classList.contains('on'))renderHist();
 }
 
 /* ---------- 入力・編集 ---------- */
-function openEdit(id){
+function openEdit(id,day){
   const r=id?db.records.find(x=>x.id===id):null;
   editing={id,rating:r?r.rating:null};
-  const s=new Date(),e=new Date();
+  const e=day?new Date(day):new Date(),s=new Date(e);
   if(!r){s.setDate(s.getDate()-1);s.setHours(23,0,0,0);e.setHours(6,30,0,0)}
-  $('#eTitle').textContent=r?'記録を直す':'記録を入力';
+  $('#eTitle').textContent=r?'記録を直す':day?dlabel(day)+'の朝までの記録':'記録を入力';
   $('#eStart').value=toLocalInput(r?r.start:s);
   $('#eEnd').value=toLocalInput(r?r.end:e);
   buildRate($('#eRate'),editing.rating,v=>editing.rating=v);
@@ -662,14 +747,10 @@ function openEdit(id){
 }
 $('#eSave').onclick=()=>{
   const st=new Date($('#eStart').value),en=new Date($('#eEnd').value);
-  if(isNaN(st)||isNaN(en)){toast('時刻を入れてください');return}
-  if(en<=st){toast('おきた時刻が、ねた時刻より前です');return}
-  if(en-st>20*3600e3){toast('20時間をこえています。日付を確かめてください');return}
+  if(!checkTimes(st,en))return;
   let r=editing.id&&db.records.find(x=>x.id===editing.id);
   if(!r){r={id:'r'+Date.now(),motion:[]};db.records.push(r)}
-  // 時刻を変えたら、動きのデータとずれるので外す
-  if(r.start&&(+new Date(r.start)!==+st||+new Date(r.end)!==+en))r.motion=[];
-  r.start=st.toISOString();r.end=en.toISOString();r.rating=editing.rating;
+  reframe(r,st,en);r.rating=editing.rating;
   save();closeOv('edit');renderAll();
   if($('#ov-detail').classList.contains('on'))openDetail(r.id);
   toast('保存しました');
@@ -682,17 +763,35 @@ $('#eDel').onclick=()=>{
 $('#addManual').onclick=()=>openEdit(null);
 
 /* ---------- 設定 ---------- */
-for(let m=300;m<=600;m+=30){const o=document.createElement('option');o.value=m;o.textContent=dur(m);$('#sGoal').append(o)}
-$('#sGoal').value=db.settings.goal;
+for(let m=300;m<=600;m+=15){const o=document.createElement('option');o.value=m;o.textContent=dur(m);$('#sGoal').append(o)}
+function renderSettings(){
+  $('#sGoal').value=db.settings.goal;
+  const g=suggestGoal();
+  $('#sSuggest').innerHTML=g.ready
+    ?`<p style="margin:0">すっきり起きられた日（気分4〜5）は、平均<b style="font-size:1.4rem"> ${dur(g.min)} </b>眠っていました。</p>
+      <p class="note">直近60日、気分を入れた${g.rated}日のうち${g.n}日分から計算しています。</p>
+      ${g.min!==db.settings.goal?`<button class="btn primary" id="sApply" style="margin-top:14px">${dur(g.min)}を目標にする</button>`:'<p class="note"><b>いまの目標と同じです。</b></p>'}`
+    :`<p class="note" style="margin-top:0">朝の気分を記録していくと、すっきり起きられた日の睡眠時間から、自分に合う睡眠時間を出します。</p>
+      <p class="note">あと${g.need?'気分の記録が'+g.need+'日':''}${g.need&&g.needGood?'、':''}${g.needGood?'「よい」か「すっきり」の日が'+g.needGood+'日':''}必要です。</p>`;
+  if($('#sApply'))$('#sApply').onclick=()=>{db.settings.goal=g.min;save();renderAll();toast('目標を'+dur(g.min)+'にしました')};
+  $('#sLastBk').textContent=db.lastBackup?'前回の書き出し：'+dlabel(db.lastBackup):'まだ書き出していません';
+}
 $('#sGoal').onchange=e=>{db.settings.goal=+e.target.value;save();renderAll()};
-$('#exp').onclick=()=>{
+async function doExport(){
   const data=JSON.stringify({app:'nemuri',version:2,exported:new Date().toISOString(),settings:db.settings,records:db.records});
-  const a=document.createElement('a'),d=new Date();
-  a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
-  a.download=`nemuri-${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}.json`;
+  const d=new Date(),name=`nemuri-${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}.json`;
+  const done=()=>{db.lastBackup=new Date().toISOString();save();renderAll();toast('書き出しました')};
+  try{
+    const file=new File([data],name,{type:'application/json'});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'ねむり帳のバックアップ'});done();return}
+  }catch(e){if(e&&e.name==='AbortError')return}
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download=name;
   document.body.append(a);a.click();
   setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500);
-};
+  done();
+}
+$('#exp').onclick=doExport;
 $('#impBtn').onclick=()=>$('#imp').click();
 $('#imp').onchange=async e=>{
   const f=e.target.files[0];if(!f)return;
@@ -738,18 +837,8 @@ function updClock(){
   $('#hDate').textContent=dlabel(d);
   const el=$('#hElapsed');if(el&&db.active)el.textContent=dur((Date.now()-new Date(db.active.start))/60000);
 }
-function makeIcon(){
-  try{
-    const c=document.createElement('canvas');c.width=c.height=180;
-    const x=c.getContext('2d');
-    x.fillStyle='#000';x.fillRect(0,0,180,180);
-    x.fillStyle='#fff';x.beginPath();x.arc(88,92,54,0,7);x.fill();
-    x.fillStyle='#000';x.beginPath();x.arc(114,74,48,0,7);x.fill();
-    $('#touchIcon').href=c.toDataURL('image/png');
-  }catch(e){}
-}
 
-renderAll();updClock();makeIcon();
+renderAll();updClock();
 setInterval(updClock,1000);
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
 if(db.pending)showMorning();
