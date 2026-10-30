@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="ねむり帳">
+<meta name="theme-color" content="#000000">
+<title>ねむり帳</title>
+<link rel="apple-touch-icon" id="touchIcon">
+<style>
+:root{--bg:#000;--fg:#fff;--sub:#cfcfcf;--card:#151515;--line:#303030;--muted:#7d7d7d}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:20px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.6;padding:env(safe-area-inset-top) 0 calc(100px + env(safe-area-inset-bottom))}
+button,input,select{font-family:inherit;touch-action:manipulation}
+main{max-width:560px;margin:0 auto;padding:8px 18px}
+.view{display:none}.view.on{display:block}
+h1{font-size:1.5rem;margin:10px 0 14px;line-height:1.3}
+h2{font-size:1.25rem;margin:30px 0 10px}
+.center{text-align:center}
+.sub{color:var(--sub)}
+.note{color:var(--sub);font-size:.9rem;margin:10px 0 0}
+.card{background:var(--card);border-radius:22px;padding:20px;margin:14px 0}
+.btn{display:block;width:100%;min-height:66px;font-size:1.2rem;font-weight:700;border-radius:20px;border:2px solid var(--fg);background:transparent;color:var(--fg);padding:12px}
+.btn+.btn{margin-top:12px}
+.btn.primary{background:var(--fg);color:var(--bg)}
+.btn.big{min-height:108px;font-size:1.7rem;border-radius:54px;letter-spacing:.1em}
+.btn.danger{border-style:dashed;color:var(--sub);border-color:var(--muted)}
+.btn:active,.rate button:active,.seg button:active{opacity:.6}
+.brand{display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--sub);margin:14px 0 6px;font-size:1.05rem;letter-spacing:.2em}
+.moon{width:22px;height:22px;border-radius:50%;box-shadow:7px -3px 0 0 var(--fg);display:inline-block;margin-right:14px;transform:translate(-5px,3px)}
+.clock{font-size:4.2rem;font-weight:300;text-align:center;font-variant-numeric:tabular-nums;line-height:1.15}
+.date{text-align:center;color:var(--sub);font-size:1.1rem;margin-bottom:26px}
+.big-num{font-size:3rem;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums}
+.debtNum{font-size:3.4rem;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums;margin:2px 0 4px}
+.debtNum small{font-size:1.4rem;font-weight:700;margin:0 4px}
+.debtWord{font-size:1.15rem;font-weight:700}
+.stat{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.stat:last-child{border-bottom:0}
+.stat .k{color:var(--sub);flex-shrink:0}
+.stat .v{font-size:1.2rem;font-weight:700;text-align:right;font-variant-numeric:tabular-nums;word-break:break-word}
+.split{margin-top:12px;text-align:left}
+.lbl{display:block;font-weight:700;font-size:1.1rem;margin:4px 0 8px}
+.tabs{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--bg);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:5}
+.tabs button{flex:1;background:none;border:0;color:var(--muted);font-size:1.1rem;font-weight:700;padding:20px 0 16px}
+.tabs button.on{color:var(--fg)}
+.tabs button.on::after{content:"";display:block;width:28px;height:4px;border-radius:2px;background:var(--fg);margin:6px auto 0}
+.seg{display:flex;border:2px solid var(--line);border-radius:18px;overflow:hidden;margin:8px 0}
+.seg button{flex:1;min-height:60px;font-size:1.1rem;background:none;border:0;color:var(--fg)}
+.seg button+button{border-left:2px solid var(--line)}
+.seg button.on{background:var(--fg);color:var(--bg);font-weight:700}
+.rate{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.rate button{min-height:92px;border-radius:18px;border:2px solid var(--line);background:none;color:var(--fg);font-size:1.7rem;font-weight:700;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;padding:4px 0}
+.rate button small{font-size:.8rem;font-weight:400;margin-top:4px;white-space:nowrap}
+.rate button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.field{display:block;width:100%;min-height:62px;font-size:1.15rem;border-radius:16px;border:2px solid var(--line);background:var(--bg);color:var(--fg);padding:10px 14px;margin-bottom:14px;-webkit-appearance:none;appearance:none}
+canvas{display:block;width:100%}
+.rec{display:block;width:100%;text-align:left;border:0;color:var(--fg);font-size:1rem}
+.recTop{display:flex;justify-content:space-between;gap:10px;font-size:1.05rem}
+.recBottom{display:flex;gap:18px;align-items:baseline;margin-top:6px;flex-wrap:wrap}
+.recDur{font-size:1.5rem;font-weight:700}
+.recBottom b{font-size:1.3rem}
+.tips{padding-left:1.3em;margin:6px 0 0}.tips li{margin-bottom:12px}
+.check{list-style:none;padding:0;margin:0 0 6px}
+.check li{padding:12px 0 12px 44px;position:relative;border-bottom:1px solid var(--line)}
+.check li::before{content:"";position:absolute;left:4px;top:15px;width:24px;height:24px;border:2px solid var(--fg);border-radius:7px}
+.back{background:none;border:0;color:var(--fg);font-size:1.15rem;font-weight:700;min-height:54px;padding:0 10px 0 0}
+.overlay{display:none;position:fixed;inset:0;z-index:20;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch}
+.overlay.on{display:block}
+.ovin{max-width:560px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 10px) 18px calc(40px + env(safe-area-inset-bottom))}
+#ov-night{background:#000;color:#a0a0a0;z-index:30;cursor:pointer}
+.nInfo{display:none;flex-direction:column;justify-content:center;min-height:100%;max-width:520px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 20px) 22px calc(30px + env(safe-area-inset-bottom))}
+.nInfo.on{display:flex}
+.nInfo .clock{color:#c4c4c4}
+.nbtn{border-color:#4a4a4a!important;color:#c4c4c4!important;background:transparent!important}
+#nWarn{color:#c4c4c4;margin:16px 0 8px;line-height:1.6}
+#toast{position:fixed;left:50%;bottom:calc(116px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:14px 24px;border-radius:30px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .3s;z-index:60;width:max-content;max-width:88vw;text-align:center}
+#toast.on{opacity:1}
+</style>
+</head>
+<body>
+<main>
+  <!-- ホーム -->
+  <section id="v-home" class="view on">
+    <div class="brand"><span class="moon"></span>ねむり帳</div>
+    <div class="clock" id="hClock">--:--</div>
+    <div class="date" id="hDate"></div>
+    <div id="hDebt"></div>
+    <div id="hMain"></div>
+    <div id="hLast"></div>
+  </section>
+
+  <!-- 記録 -->
+  <section id="v-hist" class="view">
+    <h1>記録</h1>
+    <div class="seg" id="period"><button data-v="7" class="on">1週間</button><button data-v="30">1か月</button></div>
+    <div class="card">
+      <div class="lbl">ねむった時間</div>
+      <canvas id="barChart"></canvas>
+      <p class="note">濃い棒＝目標に届いた日、うすい棒＝足りない日、点線＝目標</p>
+    </div>
+    <div class="card">
+      <div class="lbl">睡眠負債の移り変わり</div>
+      <canvas id="debtChart"></canvas>
+      <p class="note">その日の時点で、直近14日間にたまっていた寝不足の合計です。下がっていれば返せています。</p>
+    </div>
+    <div class="card">
+      <div class="lbl">深い眠りの割合</div>
+      <canvas id="deepChart"></canvas>
+      <p class="note">眠っていた時間のうち、深い眠りだった割合の目安です。人と比べるより、ふだんの自分と比べて見てください。</p>
+    </div>
+    <div class="card" id="stats"></div>
+    <h2>毎日の記録</h2>
+    <button class="btn" id="addManual">＋ 手で入力する</button>
+    <div id="list"></div>
+  </section>
+
+  <!-- 設定 -->
+  <section id="v-set" class="view">
+    <h1>設定</h1>
+    <div class="card">
+      <label class="lbl" for="sGoal">目標の睡眠時間</label>
+      <select class="field" id="sGoal" style="margin:0"></select>
+      <p class="note">睡眠負債は、この目標に足りなかった分から計算します。</p>
+    </div>
+    <div class="card">
+      <div class="lbl">データ</div>
+      <button class="btn" id="exp">書き出す（バックアップ）</button>
+      <button class="btn" id="impBtn">読み込む</button>
+      <input type="file" id="imp" accept="application/json,.json" hidden>
+      <button class="btn danger" id="wipe">すべて消す</button>
+      <p class="note">記録はこのスマホの中だけに保存されます。月に1回くらい書き出しておくと安心です。</p>
+    </div>
+    <div class="card">
+      <div class="lbl">使い方のコツ（iPhone）</div>
+      <ol class="tips">
+        <li>Safariで開き、共有ボタン →「ホーム画面に追加」でアプリのように使えます。</li>
+        <li>寝る前に充電器につなぎ、コントロールセンターで明るさを一番暗くします。</li>
+        <li>スマホは枕の横、ふとんの上に置くと寝返りがよく測れます。ふとんの中には入れないでください。</li>
+        <li>途中で画面が消える場合は、設定アプリ →「画面表示と明るさ」→「自動ロック」を「なし」にします（朝に元へ戻してください）。</li>
+        <li>電池をいたわるため、設定アプリ →「バッテリー」→「バッテリーの状態と充電」→「バッテリー充電の最適化」をオンにします。</li>
+        <li>初めての夜は「動きと方向」の許可を聞かれます。「許可」を押してください。</li>
+      </ol>
+    </div>
+    <p class="note center" style="margin:20px 0">眠りの深さは、体の動きから出した目安です。<br>医療用の診断ではありません。</p>
+  </section>
+</main>
+
+<nav class="tabs">
+  <button data-v="home" class="on">ホーム</button>
+  <button data-v="hist">記録</button>
+  <button data-v="set">設定</button>
+</nav>
+
+<!-- 寝る前のかくにん -->
+<div class="overlay" id="ov-start"><div class="ovin">
+  <button class="back" data-close>‹ もどる</button>
+  <h1>寝る前のかくにん</h1>
+  <ul class="check">
+    <li>充電器につなぎましたか？</li>
+    <li>画面の明るさを一番暗くしましたか？</li>
+    <li>スマホは枕の横、ふとんの上に置きます</li>
+    <li>目覚ましはいつも通りセットしてください</li>
+  </ul>
+  <button class="btn primary big" id="stGo" style="margin-top:24px">はじめる</button>
+  <p class="note center">はじめると画面が真っ黒になります。<br>画面をさわると時計が出ます。</p>
+</div></div>
+
+<!-- 夜（計測中） -->
+<div class="overlay" id="ov-night">
+  <div class="nInfo" id="nInfo">
+    <div class="clock" id="nClock"></div>
+    <div class="center" id="nSince"></div>
+    <div class="center note" id="nWarn"></div>
+    <button class="btn nbtn" id="nWake" style="margin-top:24px">起きた</button>
+    <button class="btn nbtn" id="nHide">黒い画面にもどす</button>
+    <button class="btn nbtn" id="nHome">アプリの画面を見る</button>
+  </div>
+</div>
+
+<!-- 朝 -->
+<div class="overlay" id="ov-morning"><div class="ovin">
+  <h1 style="margin-top:20px">おはようございます</h1>
+  <div class="card center">
+    <div class="sub">ねむった時間</div>
+    <div class="big-num" id="mDur"></div>
+    <div class="sub" id="mRange"></div>
+    <div class="split" id="mSplit"></div>
+    <div class="debtWord" id="mDebt" style="margin-top:16px"></div>
+  </div>
+  <h2>今朝の気分は？</h2>
+  <div class="rate" id="mRate"></div>
+  <button class="btn primary" id="mSave" style="margin-top:30px">記録する</button>
+</div></div>
+
+<!-- 詳細 -->
+<div class="overlay" id="ov-detail"><div class="ovin">
+  <button class="back" data-close>‹ もどる</button>
+  <div id="dBody"></div>
+</div></div>
+
+<!-- 入力・編集 -->
+<div class="overlay" id="ov-edit"><div class="ovin">
+  <button class="back" data-close>‹ もどる</button>
+  <h1 id="eTitle">記録を入力</h1>
+  <label class="lbl" for="eStart">ねた時刻</label>
+  <input type="datetime-local" class="field" id="eStart">
+  <label class="lbl" for="eEnd">おきた時刻</label>
+  <input type="datetime-local" class="field" id="eEnd">
+  <h2>気分</h2>
+  <div class="rate" id="eRate"></div>
+  <button class="btn primary" id="eSave" style="margin-top:30px">保存する</button>
+  <button class="btn danger" id="eDel">この記録を消す</button>
+</div></div>
+
+<div id="toast"></div>
+
+<script>
+'use strict';
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const KEY='nemuri-v1';
+const RATE=['','ぐったり','ねむい','ふつう','よい','すっきり'];
+const MOTION_TH=.15; // 1秒の揺れがこれを超えたら「動いた」とする
+const WD='日月火水木金土';
+const defaults=()=>({settings:{goal:450},records:[],active:null,pending:null});
+let db=load(), S=null, period=7, editing=null;
+
+function load(){
+  try{const d=JSON.parse(localStorage.getItem(KEY)||'null');
+    if(d&&Array.isArray(d.records)){const b=defaults();return Object.assign(b,d,{settings:Object.assign(b.settings,d.settings||{})})}}catch(e){}
+  return defaults();
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(db))}catch(e){toast('保存できませんでした')}}
+
+/* ---------- 小道具 ---------- */
+const pad=n=>String(n).padStart(2,'0');
+const hm=d=>{d=new Date(d);return d.getHours()+':'+pad(d.getMinutes())};
+const dur=m=>{m=Math.round(m);if(m<0)m=0;const h=Math.floor(m/60),mm=m%60;return h?h+'時間'+(mm?mm+'分':''):mm+'分'};
+const bigDur=m=>{m=Math.round(m);if(m<1)return 'なし';const h=Math.floor(m/60),mm=m%60;return (h?h+'<small>時間</small>':'')+(mm||!h?mm+'<small>分</small>':'')};
+const dlabel=d=>{d=new Date(d);return (d.getMonth()+1)+'月'+d.getDate()+'日('+WD[d.getDay()]+')'};
+const clockMin=(d,p)=>{d=new Date(d);return (d.getHours()*60+d.getMinutes()-p*60+2880)%1440};
+const fromClockMin=(m,p)=>{m=(Math.round(m)+p*60)%1440;return Math.floor(m/60)+':'+pad(m%60)};
+const avg=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:0;
+const std=a=>{if(a.length<2)return 0;const m=avg(a);return Math.sqrt(avg(a.map(v=>(v-m)**2)))};
+const sameDay=(a,b)=>a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();
+const toLocalInput=d=>{d=new Date(d);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes())};
+const sorted=()=>[...db.records].sort((a,b)=>new Date(b.end)-new Date(a.end));
+let tT;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('on'),2600)}
+function openOv(id){$('#ov-'+id).classList.add('on');$('#ov-'+id).scrollTop=0}
+function closeOv(id){$('#ov-'+id).classList.remove('on')}
+
+/* ---------- 分析 ---------- */
+function analyze(r){
+  const mv=r.motion||[];
+  const has=mv.some(v=>v!=null);
+  const total=(new Date(r.end)-new Date(r.start))/60000;
+  const n=mv.length;
+  // 寝つき：10分続けてほとんど動かなくなった時点
+  let latency=null;
+  if(has){
+    for(let i=0;i+10<=n;i++){
+      let s=0,ok=true;
+      for(let j=i;j<i+10;j++){if(mv[j]==null){ok=false;break}s+=mv[j]}
+      if(ok&&s<=3){latency=i;break}
+    }
+  }
+  // 眠りの段階（0=目覚め 1=浅い 2=深い null=計測なし）
+  const st=[];
+  let deep=0,light=0,wakeMid=0;
+  if(has){
+    const sm=[];
+    for(let i=0;i<n;i++){let s=0,c=0;for(let j=Math.max(0,i-5);j<=Math.min(n-1,i+5);j++)if(mv[j]!=null){s+=mv[j];c++}sm[i]=c?s/c:null}
+    for(let i=0;i<n;i++){
+      const v=mv[i];
+      if(v==null){st[i]=null;continue}
+      if(latency!=null&&i<latency)st[i]=0;
+      else if(v>=10||sm[i]>=4)st[i]=0;
+      else st[i]=sm[i]<.5?2:1;
+    }
+    // 20分続かない「深い」は浅いとみなす
+    for(let i=0;i<n;){if(st[i]!==2){i++;continue}let j=i;while(j<n&&st[j]===2)j++;if(j-i<20)for(let k=i;k<j;k++)st[k]=1;i=j}
+    // 寝ついた後、5分以上続いた「目覚め」だけを途中で起きていた時間とする
+    for(let i=latency||0;i<n;){if(st[i]!==0){i++;continue}let j=i;while(j<n&&st[j]===0)j++;if(j-i>=5)wakeMid+=j-i;else for(let k=i;k<j;k++)st[k]=1;i=j}
+    st.forEach(v=>{if(v===2)deep++;else if(v===1)light++});
+  }
+  const sleepMin=Math.max(0,total-(latency||0)-wakeMid);
+  const deepPct=deep+light?Math.round(deep/(deep+light)*100):null;
+  const gaps=mv.filter(v=>v==null).length;
+  return{has,total,sleepMin,latency,stages:st,deep,light,wakeMid,deepPct,gaps};
+}
+
+/* 睡眠負債：直近14日、目標に足りなかった分を積み上げ、多く寝た日は返済として差し引く（0より下にはしない） */
+const dkey=d=>{d=new Date(d);return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()};
+function nightMap(extra){
+  const m=new Map();
+  db.records.concat(extra?[extra]:[]).forEach(r=>{const k=dkey(r.end);m.set(k,(m.get(k)||0)+analyze(r).sleepMin)});
+  return m;
+}
+function debtAt(day,map){
+  map=map||nightMap();
+  const g=db.settings.goal;let d=0,n=0;
+  for(let i=13;i>=0;i--){
+    const x=new Date(day);x.setHours(0,0,0,0);x.setDate(x.getDate()-i);
+    const v=map.get(dkey(x));if(v==null)continue;
+    n++;d=Math.max(0,d+g-v);
+  }
+  return{debt:d,nights:n};
+}
+const debtWord=m=>m<60?'ほとんどありません':m<180?'少したまっています':m<420?'たまっています':'かなりたまっています';
+
+/* ---------- 夜の計測 ---------- */
+async function lockScreen(){
+  if(!S)return;
+  try{
+    if('wakeLock' in navigator){
+      const rt=S;
+      rt.wake=await navigator.wakeLock.request('screen');
+      rt.wakeOk=true;
+      rt.wake.addEventListener('release',()=>{rt.wakeOk=false});
+    }
+  }catch(e){S&&(S.wakeOk=false)}
+}
+async function startSleep(resume){
+  if(S)return;
+  const rt={secMax:0,minMv:0,lastA:null,cur:0,wakeOk:false,gotMotion:false};
+  S=rt;
+  // ボタンを押した瞬間に許可を求める（iPhoneの決まり）
+  let mp=Promise.resolve('granted');
+  if(window.DeviceMotionEvent&&typeof DeviceMotionEvent.requestPermission==='function'){
+    try{mp=DeviceMotionEvent.requestPermission()}catch(e){mp=Promise.resolve('denied')}
+  }
+  if(!resume||!db.active)db.active={start:new Date().toISOString(),motion:[],useMotion:false};
+  const A=db.active;
+  const idx=Math.floor((Date.now()-new Date(A.start))/60000);
+  rt.cur=idx;
+  showNight();
+  let motionOk=false;
+  try{motionOk=(await mp)==='granted'}catch(e){}
+  if(S!==rt)return;
+  if(motionOk&&'DeviceMotionEvent' in window){
+    rt.onMotion=e=>{
+      const a=e.accelerationIncludingGravity;
+      if(!a||a.x==null)return;
+      rt.gotMotion=true;
+      if(rt.lastA){const d=Math.hypot(a.x-rt.lastA.x,a.y-rt.lastA.y,a.z-rt.lastA.z);if(d>rt.secMax)rt.secMax=d}
+      rt.lastA={x:a.x,y:a.y,z:a.z};
+    };
+    window.addEventListener('devicemotion',rt.onMotion);
+  }
+  A.useMotion=!!rt.onMotion;
+  if(A.useMotion)for(let i=A.motion.length;i<idx;i++)A.motion[i]=null;
+  await lockScreen();
+  if(S!==rt)return;
+  // センサーが無い端末（パソコン等）では動きを使わない
+  setTimeout(()=>{
+    if(S===rt&&A.useMotion&&!rt.gotMotion){
+      window.removeEventListener('devicemotion',rt.onMotion);rt.onMotion=null;
+      A.useMotion=false;A.motion=[];save();
+      $('#nWarn').innerHTML+=(($('#nWarn').innerHTML?'<br>':'')+'動きのセンサーが反応しませんでした。眠りの深さは出ません。');
+    }
+  },6000);
+  const warn=[];
+  if(!A.useMotion)warn.push('動きのセンサーが使えませんでした。眠った時間だけ記録します。');
+  if(!rt.wakeOk)warn.push('画面が自動で消えるかもしれません。設定アプリ →「画面表示と明るさ」→「自動ロック」を「なし」にしてください。');
+  $('#nWarn').innerHTML=warn.join('<br>');
+  if(warn.length)showNightInfo(30000);
+  rt.tick=setInterval(tick,1000);
+  save();renderHome();
+}
+function tick(){
+  const A=db.active;
+  if(!A||!S)return;
+  if(A.useMotion){if(S.secMax>MOTION_TH)S.minMv++;S.secMax=0}
+  const idx=Math.floor((Date.now()-new Date(A.start))/60000);
+  if(idx>S.cur){
+    if(A.useMotion){
+      A.motion[S.cur]=Math.min(60,S.minMv);
+      for(let i=S.cur+1;i<idx;i++)A.motion[i]=null;
+    }
+    S.minMv=0;S.cur=idx;
+    save();
+  }
+}
+function stopSensors(){
+  if(!S)return;
+  clearInterval(S.tick);
+  if(S.onMotion)window.removeEventListener('devicemotion',S.onMotion);
+  if(S.wake)S.wake.release().catch(()=>{});
+  S=null;
+}
+function wakeUp(){
+  const A=db.active;
+  if(!A)return;
+  if(S&&A.useMotion)A.motion[S.cur]=Math.min(60,S.minMv);
+  stopSensors();
+  closeOv('night');
+  const end=new Date();
+  if(end-new Date(A.start)<10*60000&&!confirm('10分未満の記録です。保存しますか？')){
+    db.active=null;save();renderAll();return;
+  }
+  const r={id:'r'+Date.now(),start:A.start,end:end.toISOString(),rating:null,motion:A.motion||[]};
+  db.pending=r;db.active=null;save();renderAll();showMorning();
+}
+function cancelSleep(){
+  if(!confirm('この計測を取り消しますか？記録は残りません。'))return;
+  stopSensors();db.active=null;save();renderAll();
+}
+
+/* ---------- 夜の画面 ---------- */
+let nT;
+function showNight(){
+  if(db.active)$('#nSince').textContent=hm(db.active.start)+' から計測中';
+  $('#nInfo').classList.remove('on');
+  openOv('night');
+}
+function showNightInfo(ms){$('#nInfo').classList.add('on');clearTimeout(nT);nT=setTimeout(()=>$('#nInfo').classList.remove('on'),ms||15000)}
+$('#ov-night').addEventListener('click',e=>{
+  if(e.target.closest('button'))return;
+  if($('#nInfo').classList.contains('on'))$('#nInfo').classList.remove('on');else showNightInfo();
+});
+$('#nWake').onclick=()=>wakeUp();
+$('#nHide').onclick=()=>$('#nInfo').classList.remove('on');
+$('#nHome').onclick=()=>{closeOv('night');renderHome()};
+
+/* ---------- 朝 ---------- */
+function buildRate(el,val,cb){
+  el.innerHTML=[1,2,3,4,5].map(i=>`<button data-v="${i}" class="${val===i?'on':''}">${i}<small>${RATE[i]}</small></button>`).join('');
+  el.onclick=e=>{const b=e.target.closest('button');if(!b)return;[...el.children].forEach(x=>x.classList.toggle('on',x===b));cb(+b.dataset.v)};
+}
+const statRows=rows=>rows.map(([k,v])=>`<div class="stat"><span class="k">${k}</span><span class="v">${v}</span></div>`).join('');
+function showMorning(){
+  const r=db.pending;if(!r)return;
+  const a=analyze(r);
+  $('#mDur').textContent=dur(a.sleepMin);
+  $('#mRange').textContent=hm(r.start)+' → '+hm(r.end)+(a.latency!=null?'　寝つくまで約'+a.latency+'分':'');
+  $('#mSplit').style.display=a.deepPct!=null?'':'none';
+  $('#mSplit').innerHTML=a.deepPct!=null?statRows([['深い眠り',dur(a.deep)+'（'+a.deepPct+'%）'],['浅い眠り',dur(a.light)],['途中で起きた',dur(a.wakeMid)]]):'';
+  const after=debtAt(new Date(),nightMap(r)).debt,df=Math.round(a.sleepMin-db.settings.goal);
+  $('#mDebt').innerHTML='いまの睡眠負債 '+(after?dur(after):'なし')+'<br><span class="sub" style="font-weight:400">昨夜は目標より'+(df<0?dur(-df)+'少なめ':df>0?dur(df)+'多め':'ぴったり')+'</span>';
+  buildRate($('#mRate'),r.rating,v=>{r.rating=v;save()});
+  openOv('morning');
+}
+$('#mSave').onclick=()=>{
+  const r=db.pending;if(!r)return;
+  db.records.push(r);db.pending=null;save();
+  closeOv('morning');renderAll();openDetail(r.id);toast('記録しました');
+};
+
+/* ---------- 詳細 ---------- */
+function openDetail(id){
+  const r=db.records.find(x=>x.id===id);if(!r)return;
+  const a=analyze(r),rows=[];
+  rows.push(['ねた → おきた',hm(r.start)+' → '+hm(r.end)]);
+  rows.push(['ねむった時間',dur(a.sleepMin)]);
+  if(a.has){
+    if(a.deepPct!=null)rows.push(['深い眠り',dur(a.deep)+'（'+a.deepPct+'%）']);
+    rows.push(['浅い眠り',dur(a.light)]);
+    rows.push(['途中で起きていた',dur(a.wakeMid)]);
+    rows.push(['寝つくまで',a.latency!=null?'約'+a.latency+'分':'判定できず']);
+  }else rows.push(['眠りの深さ','計測なし（手入力）']);
+  rows.push(['今朝の気分',r.rating?r.rating+'　'+RATE[r.rating]:'未入力']);
+  $('#dBody').innerHTML=`<h1>${dlabel(r.end)}</h1>
+    <div class="card">${statRows(rows)}</div>
+    ${a.has?`<div class="card"><div class="lbl">眠りの深さ</div><canvas id="mChart"></canvas>
+      <p class="note">太い白い線＝深い眠り、うすい帯＝計測が止まっていた時間</p></div>
+      <p class="note">「深い眠り」は、20分以上ほとんど体が動かなかった時間です。体の動きから出した目安で、病院で脳波を使って測る深さとは違います。</p>`:''}
+    ${a.gaps>5?`<p class="note">途中で計測が止まっていた時間が${dur(a.gaps)}あります。</p>`:''}
+    <button class="btn" id="dEdit" style="margin-top:20px">この記録を直す</button>`;
+  $('#dEdit').onclick=()=>openEdit(id);
+  openOv('detail');
+  if(a.has)requestAnimationFrame(()=>drawStages($('#mChart'),r,a));
+}
+
+/* ---------- グラフ ---------- */
+function setupCanvas(c,h){
+  const dpr=window.devicePixelRatio||1,w=c.clientWidth;
+  c.style.height=h+'px';c.width=w*dpr;c.height=h*dpr;
+  const x=c.getContext('2d');x.scale(dpr,dpr);return{x,w,h};
+}
+function colors(){
+  const cs=getComputedStyle(document.documentElement),g=k=>cs.getPropertyValue(k).trim();
+  return{fg:g('--fg'),sub:g('--sub'),line:g('--line'),muted:g('--muted')};
+}
+const FONT='-apple-system,"Hiragino Sans",sans-serif';
+function drawStages(c,r,a){
+  if(!c)return;
+  const {x,w,h}=setupCanvas(c,230),C=colors();
+  const st=a.stages,n=Math.max(st.length,1);
+  const L=62,top=16,bot=h-34,pw=w-L-2,bw=pw/n;
+  const rowY=s=>top+14+s*((bot-top-28)/2);
+  x.font='15px '+FONT;x.textAlign='left';
+  [['目覚め',0],['浅い',1],['深い',2]].forEach(([lb,s])=>{const y=rowY(s);x.fillStyle=C.line;x.fillRect(L,y,pw,1);x.fillStyle=s===2?C.fg:C.sub;x.fillText(lb,0,y+5)});
+  let prev=null;
+  for(let i=0;i<n;i++){
+    const s=st[i],x0=L+i*bw;
+    if(s==null){x.globalAlpha=.45;x.fillStyle=C.line;x.fillRect(x0,top,Math.ceil(bw)+.5,bot-top);x.globalAlpha=1;prev=null;continue}
+    const y=rowY(s),th=s===2?16:s===1?9:7;
+    if(prev!=null&&prev!==s){const y1=rowY(prev);x.fillStyle=C.muted;x.fillRect(x0-.5,Math.min(y,y1),1.2,Math.abs(y-y1))}
+    x.fillStyle=s===2?C.fg:s===1?C.sub:C.muted;
+    x.fillRect(x0,y-th/2,Math.ceil(bw)+.5,th);
+    prev=s;
+  }
+  const t0=new Date(r.start),f=new Date(t0);f.setMinutes(0,0,0);f.setHours(f.getHours()+1);
+  const step=n/60>7?2:1;
+  x.font='16px '+FONT;x.textAlign='center';
+  for(const t=new Date(f);(t-t0)/60000<=n;t.setHours(t.getHours()+step)){
+    const px=L+(t-t0)/60000*bw;
+    if(px<L+14||px>w-14)continue;
+    x.fillStyle=C.line;x.fillRect(px,top,1,bot-top);
+    x.fillStyle=C.sub;x.fillText(t.getHours()+'時',px,h-8);
+  }
+}
+function drawSeries(c,items,o){
+  const {x,w,h}=setupCanvas(c,210),C=colors();
+  const L=o.left||56,top=30,bot=h-34,ph=bot-top,pw=w-L;
+  const vals=items.map(i=>i.v).filter(v=>v!=null);
+  const max=Math.max(o.min,...vals)*1.15,step=o.step(max);
+  x.font='14px '+FONT;x.textAlign='right';
+  for(let g=0;g<=max;g+=step){const y=bot-g/max*ph;x.fillStyle=C.line;x.fillRect(L,y,pw,1);x.fillStyle=C.sub;x.fillText(o.axis(g),L-6,y+5)}
+  const n=items.length,slot=pw/n,pts=[];
+  items.forEach((it,i)=>{
+    const cx=L+slot*i+slot/2;
+    if(it.v!=null){
+      const y=bot-it.v/max*ph;
+      if(o.type==='bar'){const bw=Math.min(30,slot*.6);x.fillStyle=C.fg;x.fillRect(cx-bw/2,y,bw,Math.max(2,bot-y))}
+      pts.push([cx,y,it.v]);
+    }
+    if(it.label){x.fillStyle=it.today?C.fg:C.sub;x.font=(it.today?'bold ':'')+'16px '+FONT;x.textAlign='center';x.fillText(it.label,cx,h-8)}
+  });
+  if(o.type==='line'&&pts.length){
+    x.strokeStyle=C.fg;x.lineWidth=3;x.lineJoin='round';x.beginPath();
+    pts.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.stroke();
+    x.fillStyle=C.fg;pts.forEach(p=>{x.beginPath();x.arc(p[0],p[1],n<=7?5:3,0,7);x.fill()});
+    const p=pts[pts.length-1];x.font='bold 16px '+FONT;x.textAlign='right';x.fillText(o.fmt(p[2]),Math.min(w-2,p[0]+6),p[1]-12);
+  }
+  if(o.type==='bar'&&n<=7){x.fillStyle=C.sub;x.font='15px '+FONT;x.textAlign='center';pts.forEach(p=>x.fillText(o.fmt(p[2]),p[0],p[1]-11))}
+}
+function drawBars(c,items,goal){
+  const {x,w,h}=setupCanvas(c,240),C=colors();
+  const top=28,bot=h-34,ph=bot-top;
+  const maxV=Math.max(goal*1.3,...items.map(i=>i.v||0));
+  const n=items.length,slot=w/n,bw=Math.min(38,slot*.62);
+  for(let hh=2;hh*60<maxV;hh+=2){const y=bot-hh*60/maxV*ph;x.fillStyle=C.line;x.fillRect(0,y,w,1)}
+  const gy=bot-goal/maxV*ph;
+  items.forEach((it,i)=>{
+    const cx=slot*i+slot/2;
+    if(it.v){
+      const bh=Math.max(3,it.v/maxV*ph);
+      x.fillStyle=it.v>=goal-15?C.fg:C.muted;
+      x.beginPath();
+      if(x.roundRect)x.roundRect(cx-bw/2,bot-bh,bw,bh,[Math.min(6,bw/2),Math.min(6,bw/2),0,0]);else x.rect(cx-bw/2,bot-bh,bw,bh);
+      x.fill();
+      if(n<=7){x.fillStyle=C.sub;x.font='15px '+FONT;x.textAlign='center';x.fillText(Math.floor(it.v/60)+':'+pad(Math.round(it.v)%60),cx,bot-bh-7)}
+    }else{x.fillStyle=C.line;x.fillRect(cx-bw/2,bot-3,bw,3)}
+    if(it.label){x.fillStyle=it.today?C.fg:C.sub;x.font=(it.today?'bold ':'')+'16px '+FONT;x.textAlign='center';x.fillText(it.label,cx,h-8)}
+  });
+  x.strokeStyle=C.sub;x.lineWidth=1.5;x.setLineDash([6,5]);x.beginPath();x.moveTo(0,gy);x.lineTo(w,gy);x.stroke();x.setLineDash([]);
+  x.fillStyle=C.sub;x.font='14px '+FONT;x.textAlign='left';x.fillText('目標',2,gy-6);
+}
+
+/* ---------- 画面の描画 ---------- */
+function summaryCard(r){
+  const a=analyze(r);
+  return `<button class="card rec" data-id="${r.id}">
+    <div class="recTop"><span>${dlabel(r.end)}</span><span class="sub">${hm(r.start)} → ${hm(r.end)}</span></div>
+    <div class="recBottom"><span class="recDur">${dur(a.sleepMin)}</span>${a.deepPct!=null?`<span>深い <b>${a.deepPct}%</b></span>`:''}${r.rating?`<span class="sub">${RATE[r.rating]}</span>`:''}</div>
+  </button>`;
+}
+function renderHome(){
+  const A=db.active,m=$('#hMain');
+  const D=debtAt(new Date());
+  $('#hDebt').innerHTML=D.nights?`<div class="card center">
+      <div class="sub">いまの睡眠負債</div>
+      <div class="debtNum">${bigDur(D.debt)}</div>
+      <div class="debtWord">${debtWord(D.debt)}</div>
+      <p class="note">${D.debt<30?'この調子です。':D.debt<=420?`毎日あと30分多く寝ると、約${Math.ceil(D.debt/30)}日で返せます。`:'一度に取り返そうとせず、まずは毎日30分早く寝ることから始めましょう。'}</p>
+      <p class="note">直近14日のうち${D.nights}日分の記録から計算${D.nights<7?'（記録が増えるほど正確になります）':''}</p>
+    </div>`:'';
+  if(!A){
+    m.innerHTML=`<button class="btn primary big" id="goSleep">おやすみ</button>
+      <p class="center sub">目標 ${dur(db.settings.goal)}</p>`;
+    $('#goSleep').onclick=()=>openOv('start');
+  }else if(S){
+    m.innerHTML=`<div class="card center"><div class="sub">計測中</div><div class="big-num" id="hElapsed">${dur((Date.now()-new Date(A.start))/60000)}</div><div class="sub">${hm(A.start)} から</div></div>
+      <button class="btn primary big" id="hWake">起きた</button>
+      <button class="btn" id="hDark">黒い画面にする</button>`;
+    $('#hWake').onclick=wakeUp;
+    $('#hDark').onclick=showNight;
+  }else{
+    m.innerHTML=`<div class="card center"><div class="sub">計測が止まっています</div><div class="big-num">${hm(A.start)}〜</div>
+      <p class="note">途中でアプリが閉じられたようです。</p></div>
+      <button class="btn primary big" id="hWake">起きた</button>
+      <button class="btn" id="hResume">計測を再開する</button>
+      <button class="btn danger" id="hCancel">この計測を取り消す</button>`;
+    $('#hWake').onclick=wakeUp;
+    $('#hResume').onclick=()=>startSleep(true);
+    $('#hCancel').onclick=cancelSleep;
+  }
+  const r=sorted()[0];
+  $('#hLast').innerHTML=r?`<h2>最新の記録</h2>${summaryCard(r)}`
+    :`<p class="center sub" style="margin-top:44px">まだ記録はありません。<br>寝る前に「おやすみ」を押してください。</p>`;
+}
+function renderHist(){
+  const n=period,goal=db.settings.goal;
+  const today=new Date();today.setHours(0,0,0,0);
+  const items=[],debts=[],deeps=[],map=nightMap();
+  for(let i=n-1;i>=0;i--){
+    const d=new Date(today);d.setDate(d.getDate()-i);
+    const an=db.records.filter(r=>sameDay(new Date(r.end),d)).map(analyze);
+    const label=n<=7?WD[d.getDay()]:(i%7===0?(d.getMonth()+1)+'/'+d.getDate():'');
+    const isToday=i===0&&n<=7;
+    items.push({v:an.length?an.reduce((s,a)=>s+a.sleepMin,0):null,label,today:isToday});
+    const D=debtAt(d,map);
+    debts.push({v:D.nights?D.debt:null,label,today:isToday});
+    const dp=an.filter(a=>a.deepPct!=null),dd=dp.reduce((s,a)=>s+a.deep,0),dl=dp.reduce((s,a)=>s+a.light,0);
+    deeps.push({v:dd+dl?Math.round(dd/(dd+dl)*100):null,label,today:isToday});
+  }
+  drawBars($('#barChart'),items,goal);
+  drawSeries($('#debtChart'),debts,{type:'line',min:120,step:mx=>mx>900?300:mx>480?180:60,axis:g=>g/60+'時間',fmt:m=>m<1?'なし':dur(m),left:60});
+  drawSeries($('#deepChart'),deeps,{type:'bar',min:30,step:mx=>mx>60?20:10,axis:g=>g+'%',fmt:v=>v+'%',left:48});
+  const since=new Date(today);since.setDate(since.getDate()-(n-1));
+  const recs=db.records.filter(r=>new Date(r.end)>=since);
+  if(!recs.length){
+    $('#stats').innerHTML='<p class="sub center" style="margin:0">この期間の記録はまだありません</p>';
+  }else{
+    const as=recs.map(r=>({r,a:analyze(r)}));
+    const bed=as.map(o=>clockMin(o.r.start,12)),wake=as.map(o=>clockMin(o.r.end,18));
+    const dps=as.filter(o=>o.a.deepPct!=null).map(o=>o.a.deepPct);
+    const cur=debtAt(new Date(),map).debt;
+    $('#stats').innerHTML=statRows([
+      ['記録した日',recs.length+'日'],
+      ['平均のねむった時間',dur(avg(as.map(o=>o.a.sleepMin)))],
+      ['いまの睡眠負債',cur?dur(cur):'なし'],
+      ['平均の深い眠り',dps.length?Math.round(avg(dps))+'%':'計測なし'],
+      ['平均のねた時刻',fromClockMin(avg(bed),12)],
+      ['平均のおきた時刻',fromClockMin(avg(wake),18)],
+      ['ねる時刻のばらつき',recs.length>=2?'±'+Math.round(std(bed))+'分':'—']
+    ])+(recs.length>=3?`<p class="note">ねる時刻のばらつきは、±30分以内ならとても規則的です。</p>`:'');
+  }
+  $('#list').innerHTML=sorted().map(summaryCard).join('');
+}
+function renderAll(){
+  renderHome();
+  if($('#v-hist').classList.contains('on'))renderHist();
+}
+
+/* ---------- 入力・編集 ---------- */
+function openEdit(id){
+  const r=id?db.records.find(x=>x.id===id):null;
+  editing={id,rating:r?r.rating:null};
+  const s=new Date(),e=new Date();
+  if(!r){s.setDate(s.getDate()-1);s.setHours(23,0,0,0);e.setHours(6,30,0,0)}
+  $('#eTitle').textContent=r?'記録を直す':'記録を入力';
+  $('#eStart').value=toLocalInput(r?r.start:s);
+  $('#eEnd').value=toLocalInput(r?r.end:e);
+  buildRate($('#eRate'),editing.rating,v=>editing.rating=v);
+  $('#eDel').style.display=r?'':'none';
+  openOv('edit');
+}
+$('#eSave').onclick=()=>{
+  const st=new Date($('#eStart').value),en=new Date($('#eEnd').value);
+  if(isNaN(st)||isNaN(en)){toast('時刻を入れてください');return}
+  if(en<=st){toast('おきた時刻が、ねた時刻より前です');return}
+  if(en-st>20*3600e3){toast('20時間をこえています。日付を確かめてください');return}
+  let r=editing.id&&db.records.find(x=>x.id===editing.id);
+  if(!r){r={id:'r'+Date.now(),motion:[]};db.records.push(r)}
+  // 時刻を変えたら、動きのデータとずれるので外す
+  if(r.start&&(+new Date(r.start)!==+st||+new Date(r.end)!==+en))r.motion=[];
+  r.start=st.toISOString();r.end=en.toISOString();r.rating=editing.rating;
+  save();closeOv('edit');renderAll();
+  if($('#ov-detail').classList.contains('on'))openDetail(r.id);
+  toast('保存しました');
+};
+$('#eDel').onclick=()=>{
+  if(!confirm('この記録を消しますか？'))return;
+  db.records=db.records.filter(x=>x.id!==editing.id);
+  save();closeOv('edit');closeOv('detail');renderAll();toast('消しました');
+};
+$('#addManual').onclick=()=>openEdit(null);
+
+/* ---------- 設定 ---------- */
+for(let m=300;m<=600;m+=30){const o=document.createElement('option');o.value=m;o.textContent=dur(m);$('#sGoal').append(o)}
+$('#sGoal').value=db.settings.goal;
+$('#sGoal').onchange=e=>{db.settings.goal=+e.target.value;save();renderAll()};
+$('#exp').onclick=()=>{
+  const data=JSON.stringify({app:'nemuri',version:2,exported:new Date().toISOString(),settings:db.settings,records:db.records});
+  const a=document.createElement('a'),d=new Date();
+  a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
+  a.download=`nemuri-${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}.json`;
+  document.body.append(a);a.click();
+  setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500);
+};
+$('#impBtn').onclick=()=>$('#imp').click();
+$('#imp').onchange=async e=>{
+  const f=e.target.files[0];if(!f)return;
+  try{
+    const d=JSON.parse(await f.text());
+    if(!Array.isArray(d.records))throw 0;
+    const ids=new Set(db.records.map(r=>r.id));let add=0;
+    d.records.forEach(r=>{if(r&&r.id&&r.start&&r.end&&!ids.has(r.id)){db.records.push({id:r.id,start:r.start,end:r.end,rating:r.rating||null,motion:r.motion||[]});add++}});
+    save();renderAll();toast(add+'件を読み込みました');
+  }catch(err){toast('読み込めませんでした')}
+  e.target.value='';
+};
+$('#wipe').onclick=()=>{
+  if(!confirm('すべての記録を消します。元に戻せません。よろしいですか？'))return;
+  if(!confirm('本当に消しますか？'))return;
+  db.records=[];db.pending=null;save();renderAll();toast('すべて消しました');
+};
+
+/* ---------- タブ・共通 ---------- */
+$$('.tabs button').forEach(b=>b.onclick=()=>{
+  $$('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  $$('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+b.dataset.v));
+  window.scrollTo(0,0);renderAll();
+});
+$('#period').onclick=e=>{
+  const b=e.target.closest('button');if(!b)return;
+  period=+b.dataset.v;[...$('#period').children].forEach(x=>x.classList.toggle('on',x===b));renderHist();
+};
+$('#stGo').onclick=()=>{closeOv('start');startSleep(false)};
+document.addEventListener('click',e=>{
+  const c=e.target.closest('[data-close]');
+  if(c){c.closest('.overlay').classList.remove('on');return}
+  const r=e.target.closest('.rec');
+  if(r)openDetail(r.dataset.id);
+});
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='visible'&&S)lockScreen();
+});
+let rzT;window.addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout(renderAll,200)});
+function updClock(){
+  const d=new Date(),t=d.getHours()+':'+pad(d.getMinutes());
+  $('#hClock').textContent=t;$('#nClock').textContent=t;
+  $('#hDate').textContent=dlabel(d);
+  const el=$('#hElapsed');if(el&&db.active)el.textContent=dur((Date.now()-new Date(db.active.start))/60000);
+}
+function makeIcon(){
+  try{
+    const c=document.createElement('canvas');c.width=c.height=180;
+    const x=c.getContext('2d');
+    x.fillStyle='#000';x.fillRect(0,0,180,180);
+    x.fillStyle='#fff';x.beginPath();x.arc(88,92,54,0,7);x.fill();
+    x.fillStyle='#000';x.beginPath();x.arc(114,74,48,0,7);x.fill();
+    $('#touchIcon').href=c.toDataURL('image/png');
+  }catch(e){}
+}
+
+renderAll();updClock();makeIcon();
+setInterval(updClock,1000);
+if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
+if(db.pending)showMorning();
+</script>
+</body>
+</html>
