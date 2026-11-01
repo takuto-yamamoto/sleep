@@ -30,7 +30,7 @@ h2{font-size:1.05rem;font-weight:600;color:var(--sub);letter-spacing:.12em;margi
 .btn{display:block;width:100%;min-height:66px;font-size:1.15rem;font-weight:600;border-radius:20px;border:1.5px solid var(--btn);background:var(--card);color:var(--fg);padding:12px;letter-spacing:.06em}
 .btn+.btn{margin-top:12px}
 .btn.primary{background:var(--fg);border-color:var(--fg);color:var(--card);font-weight:700}
-.btn.big{min-height:104px;font-size:1.8rem;border-radius:52px;letter-spacing:.2em;font-weight:700}
+.btn.big{min-height:104px;font-size:1.8rem;border-radius:52px;letter-spacing:.2em;text-indent:.2em;font-weight:700;line-height:1;padding:20px 12px 12px}
 .btn.danger{border-style:dashed;color:var(--sub);border-color:var(--muted);background:transparent}
 .btn:active,.rate button:active,.seg button:active,.rec:active,.tabs button:active{opacity:.55}
 .brand{display:flex;align-items:center;justify-content:center;color:var(--sub);margin:18px 0 2px;font-size:1rem;font-weight:600;letter-spacing:.32em}
@@ -100,7 +100,8 @@ canvas{display:block;width:100%}
 /* ホーム：スクロールしない。画面の高さに収める */
 html.lock,html.lock body{overflow:hidden;height:100%}
 #v-home.on{display:flex;flex-direction:column;height:calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 124px);height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 124px);overflow:hidden}
-#hLast{flex:1;min-height:0;overflow:hidden}
+#hMain{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:center}
+#hLast{flex:0 0 auto}
 #v-home .clock{font-size:4.2rem}
 #v-home.compact .clock{font-size:3rem}
 #v-home.compact .brand{display:none}
@@ -761,7 +762,7 @@ function fitHome(){
   v.style.height=homeLock()?'':'auto';v.style.overflow=homeLock()?'':'visible';
   if(!v.classList.contains('on')||!homeLock())return;
   v.classList.remove('compact');
-  const box=$('#hLast'),over=()=>box.scrollHeight>box.clientHeight+1||v.scrollHeight>v.clientHeight+1;
+  const box=$('#hLast'),mn=$('#hMain'),over=()=>v.scrollHeight>v.clientHeight+1||mn.scrollHeight>mn.clientHeight+1;
   // 入りきらないときは、まず時計を小さくし、それでも入らなければ記録カードを減らす
   if(over())v.classList.add('compact');
   let cards=box.querySelectorAll('.rec');
@@ -769,17 +770,13 @@ function fitHome(){
   if(!box.querySelector('.rec')&&box.querySelector('h2'))box.querySelector('h2').remove();
 }
 function renderHist(){
-  const D=debtAt(new Date()),miss=missingDays();
+  const D=debtAt(new Date());
   $('#hDebt').innerHTML=D.nights?`<div class="card center">
       <div class="eyebrow">現在の睡眠負債</div>
       <div class="debtNum">${bigDur(D.debt)}</div>
       <div class="lv">${[0,1,2,3].map(i=>`<i class="${i<=debtLevel(D.debt)?'f':''}"></i>`).join('')}</div>
-      <div class="lvl"><span>少ない</span><span>多い</span></div>
-      <div class="debtWord" style="margin-top:10px">${debtWord(D.debt)}</div>
-      ${miss.length?`<button class="btn" id="hMiss" style="margin-top:16px">記録のない日が${miss.length}日あります<br><span style="font-weight:400;font-size:1rem">手入力する</span></button>
-      <p class="note">記録のない日は計算に入らないので、負債が少なく見えます。</p>`:''}
+      <div class="lvl" style="margin-bottom:0"><span>少ない</span><span>多い</span></div>
     </div>`:'';
-  if($('#hMiss'))$('#hMiss').onclick=()=>openEdit(null,miss[miss.length-1]);
   const n=period,goal=db.settings.goal;
   const today=new Date();today.setHours(0,0,0,0);
   const items=[],debts=[],deeps=[],B=buildDays(),map=nightMap();
