@@ -21,23 +21,23 @@ button,input,select{font-family:inherit;touch-action:manipulation;letter-spacing
 main{max-width:560px;margin:0 auto;padding:8px 18px}
 .view{display:none}.view.on{display:block}
 h1{font-size:1.6rem;font-weight:700;margin:18px 0 18px;line-height:1.3;letter-spacing:.04em}
-h2{font-size:.95rem;font-weight:600;color:var(--sub);letter-spacing:.14em;margin:36px 4px 12px}
+h2{font-size:1.05rem;font-weight:600;color:var(--sub);letter-spacing:.12em;margin:36px 4px 12px}
 .center{text-align:center}
 .sub{color:var(--sub)}
-.note{color:var(--sub);font-size:.88rem;line-height:1.7;margin:10px 0 0}
+.note{color:var(--sub);font-size:1rem;line-height:1.65;margin:10px 0 0}
 .card{background:var(--card);border:1px solid var(--edge);border-radius:24px;padding:22px 20px;margin:14px 0}
 .btn{display:block;width:100%;min-height:66px;font-size:1.15rem;font-weight:600;border-radius:20px;border:1.5px solid var(--btn);background:var(--card);color:var(--fg);padding:12px;letter-spacing:.06em}
 .btn+.btn{margin-top:12px}
 .btn.primary{background:var(--fg);border-color:var(--fg);color:#000;font-weight:700}
-.btn.big{min-height:104px;font-size:1.6rem;border-radius:52px;letter-spacing:.12em;font-weight:600}
+.btn.big{min-height:104px;font-size:1.8rem;border-radius:52px;letter-spacing:.2em;font-weight:700}
 .btn.danger{border-style:dashed;color:var(--sub);border-color:var(--muted);background:transparent}
 .btn:active,.rate button:active,.seg button:active,.rec:active,.tabs button:active{opacity:.55}
-.brand{display:flex;align-items:center;justify-content:center;color:var(--sub);margin:18px 0 2px;font-size:.9rem;font-weight:600;letter-spacing:.32em}
+.brand{display:flex;align-items:center;justify-content:center;color:var(--sub);margin:18px 0 2px;font-size:1rem;font-weight:600;letter-spacing:.32em}
 .moon{width:16px;height:16px;border-radius:50%;box-shadow:5px -2px 0 0 var(--sub);display:inline-block;margin-right:12px;transform:translate(-4px,2px)}
 .clock{font-size:4.6rem;font-weight:200;text-align:center;font-variant-numeric:tabular-nums;line-height:1.1;letter-spacing:.01em}
-.date{text-align:center;color:var(--sub);font-size:1.05rem;letter-spacing:.1em;margin:4px 0 26px}
+.date{text-align:center;color:var(--sub);font-size:1.15rem;letter-spacing:.1em;margin:4px 0 26px}
 .big-num{font-size:3rem;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums;letter-spacing:0}
-.eyebrow{color:var(--sub);font-size:.88rem;font-weight:600;letter-spacing:.16em}
+.eyebrow{color:var(--sub);font-size:1rem;font-weight:600;letter-spacing:.14em}
 .debtNum{font-size:3.5rem;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums;letter-spacing:0;margin:8px 0 2px}
 .debtNum small{font-size:1.3rem;font-weight:600;color:var(--sub);margin:0 6px 0 4px}
 .debtWord{font-size:1.1rem;font-weight:700;letter-spacing:.06em}
@@ -45,7 +45,7 @@ h2{font-size:.95rem;font-weight:600;color:var(--sub);letter-spacing:.14em;margin
 .lv{display:flex;gap:6px;max-width:240px;margin:16px auto 10px}
 .lv i{flex:1;height:6px;border-radius:3px;background:var(--line)}
 .lv i.f{background:var(--fg)}
-.lvl{display:flex;justify-content:space-between;max-width:240px;margin:0 auto 4px;color:var(--muted);font-size:.72rem;letter-spacing:.04em}
+.lvl{display:flex;justify-content:space-between;max-width:240px;margin:0 auto 4px;color:var(--sub);font-size:.85rem;letter-spacing:.04em}
 .stat{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
 .stat:first-child{padding-top:4px}
 .stat:last-child{border-bottom:0;padding-bottom:4px}
@@ -54,7 +54,7 @@ h2{font-size:.95rem;font-weight:600;color:var(--sub);letter-spacing:.14em;margin
 .split{margin-top:14px;padding-top:6px;border-top:1px solid var(--line);text-align:left}
 .lbl{display:block;font-weight:700;font-size:1.05rem;letter-spacing:.06em;margin:0 0 12px}
 .tabs{position:fixed;left:0;right:0;bottom:0;display:flex;background:#000;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);z-index:5}
-.tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;color:var(--muted);font-size:.95rem;font-weight:600;letter-spacing:.12em;padding:12px 0 12px}
+.tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;color:var(--muted);font-size:1.05rem;font-weight:600;letter-spacing:.12em;padding:12px 0 12px}
 .tabs svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .tabs button.on{color:var(--fg)}
 .seg{display:flex;background:var(--card);border:1.5px solid var(--btn);border-radius:18px;padding:4px;gap:4px;margin:4px 0 8px}
@@ -62,19 +62,21 @@ h2{font-size:.95rem;font-weight:600;color:var(--sub);letter-spacing:.14em;margin
 .seg button.on{background:var(--fg);color:#000;font-weight:700}
 .rate{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 .rate button{min-height:92px;border-radius:18px;border:1.5px solid var(--btn);background:var(--card);color:var(--fg);font-size:1.7rem;font-weight:600;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.2;padding:4px 0;letter-spacing:0}
-.rate button small{font-size:.74rem;font-weight:500;margin-top:6px;white-space:nowrap;color:var(--sub);letter-spacing:0}
+.rate button small{font-size:.82rem;font-weight:500;margin-top:6px;white-space:nowrap;color:var(--sub);letter-spacing:0}
 .rate button.on{background:var(--fg);color:#000;border-color:var(--fg)}
 .rate button.on small{color:#333}
 .field{display:block;width:100%;min-height:62px;font-size:1.15rem;border-radius:16px;border:1.5px solid var(--btn);background:var(--card);color:var(--fg);padding:10px 16px;margin-bottom:16px;-webkit-appearance:none;appearance:none}
 canvas{display:block;width:100%}
 .rec{display:block;width:100%;text-align:left;color:var(--fg);font-size:1rem;margin:10px 0}
-.recTop{display:flex;justify-content:space-between;gap:10px;font-size:.95rem;color:var(--sub);letter-spacing:.06em}
+.recTop{display:flex;justify-content:space-between;gap:10px;font-size:1rem;color:var(--sub);letter-spacing:.06em}
 .recBottom{display:flex;gap:20px;align-items:baseline;margin-top:4px;flex-wrap:wrap;color:var(--sub)}
 .recDur{font-size:1.5rem;font-weight:700;color:var(--fg);letter-spacing:.02em}
 .recBottom b{font-size:1.25rem;color:var(--fg)}
 .tips{padding-left:1.3em;margin:0}.tips li{margin-bottom:12px;line-height:1.7}.tips li:last-child{margin-bottom:0}
 .check{list-style:none;padding:0;margin:0 0 6px}
 .check li{padding:15px 0 15px 46px;position:relative;border-bottom:1px solid var(--line)}
+.check li{cursor:pointer;-webkit-user-select:none;user-select:none}
+.check li.on::after{content:"";position:absolute;left:12px;top:21px;width:7px;height:12px;border:solid #000;border-width:0 3px 3px 0;transform:rotate(45deg)}
 .check li::before{content:"";position:absolute;left:4px;top:18px;width:22px;height:22px;border:1.5px solid var(--sub);border-radius:7px}
 .back{background:none;border:0;color:var(--sub);font-size:1.1rem;font-weight:600;min-height:54px;padding:0 10px 0 0;letter-spacing:.08em}
 .overlay{display:none;position:fixed;inset:0;z-index:20;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch}
@@ -89,11 +91,19 @@ canvas{display:block;width:100%}
 #nWarn{color:#c4c4c4;margin:16px 0 8px;line-height:1.6}
 #toast{position:fixed;left:50%;bottom:calc(120px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--fg);color:#000;padding:14px 26px;border-radius:30px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .3s;z-index:60;width:max-content;max-width:88vw;text-align:center;letter-spacing:.06em}
 #toast.on{opacity:1}
+.setline{font-size:1.15rem;margin:0 0 12px}
+.setbig{font-size:2.4rem;font-weight:700;line-height:1.2;font-variant-numeric:tabular-nums}
+.tag{display:inline-block;margin-left:10px;padding:1px 10px;border:1px solid var(--btn);border-radius:10px;font-size:.9rem;color:var(--sub);letter-spacing:.06em;vertical-align:1px}
+.rec.dim{opacity:.5}
+.check li.on::before{background:var(--fg);border-color:var(--fg)}
 /* ホーム：スクロールしない。画面の高さに収める */
 html.lock,html.lock body{overflow:hidden;height:100%}
 #v-home.on{display:flex;flex-direction:column;height:calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 124px);height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 124px);overflow:hidden}
 #hLast{flex:1;min-height:0;overflow:hidden}
 #v-home .clock{font-size:4.2rem}
+#v-home.compact .clock{font-size:3rem}
+#v-home.compact .brand{display:none}
+#v-home.compact .date{margin-bottom:12px}
 #v-home .date{margin-bottom:18px}
 #v-home h2{margin:22px 4px 8px}
 .rec.mini{padding:14px 20px;margin:8px 0}
@@ -143,34 +153,20 @@ html.lock,html.lock body{overflow:hidden;height:100%}
     <h1>設定</h1>
     <div class="card">
       <label class="lbl" for="sGoal">目標の睡眠時間</label>
-      <select class="field" id="sGoal" style="margin:0"></select>
-      <p class="note">睡眠負債は、この目標に足りなかった分から計算します。</p>
+      <select class="field" id="sGoal" style="margin:0;font-size:1.4rem;font-weight:700"></select>
     </div>
     <div class="card">
-      <div class="lbl">自分に合う睡眠時間</div>
+      <div class="lbl">おすすめの睡眠時間</div>
       <div id="sSuggest"></div>
     </div>
     <div class="card">
-      <div class="lbl">データ</div>
-      <button class="btn" id="exp">書き出す（バックアップ）</button>
+      <div class="lbl">バックアップ</div>
+      <div class="setline" id="sLastBk"></div>
+      <button class="btn" id="exp">書き出す</button>
       <button class="btn" id="impBtn">読み込む</button>
       <input type="file" id="imp" accept="application/json,.json" hidden>
-      <button class="btn danger" id="wipe">全て消す</button>
-      <p class="note">記録はこのスマホの中だけに保存されます。書き出す時は「“ファイル”に保存」を選んでください。</p>
-      <p class="note" id="sLastBk"></p>
     </div>
-    <div class="card">
-      <div class="lbl">使い方のコツ（iPhone）</div>
-      <ol class="tips">
-        <li>Safariで開き、共有ボタン →「ホーム画面に追加」でアプリのように使えます。</li>
-        <li>寝る前に充電器に繋ぎ、コントロールセンターで明るさを一番暗くします。</li>
-        <li>スマホは枕の横、布団の上に置くと寝返りがよく測れます。布団の中には入れないでください。</li>
-        <li>途中で画面が消える場合は、設定アプリ →「画面表示と明るさ」→「自動ロック」を「なし」にします（朝に元へ戻してください）。</li>
-        <li>電池の劣化を防ぐため、設定アプリ →「バッテリー」→「バッテリーの状態と充電」→「バッテリー充電の最適化」をオンにします。</li>
-        <li>初めての夜は「動きと方向」の許可を聞かれます。「許可」を押してください。</li>
-      </ol>
-    </div>
-    <p class="note center" style="margin:20px 0">眠りの深さは、体の動きから出した目安です。<br>医療用の診断ではありません。</p>
+    <button class="btn danger" id="wipe" style="margin-top:30px">記録を全て消す</button>
   </section>
 </main>
 
@@ -369,9 +365,40 @@ function analyzeRaw(r){
 
 /* 睡眠負債：直近14日、目標に足りなかった分を積み上げ、多く寝た日は返済として差し引く（0より下にはしない） */
 const dkey=d=>{d=new Date(d);return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()};
+/*
+  記録の種類
+   main  : その日（起きた日）でいちばん長い、3時間以上の記録 ＝ 夜の睡眠
+   second: 夜の睡眠のあと2時間以内に始まった記録 ＝ 二度寝
+   nap   : それ以外 ＝ 昼寝
+   short : 10分未満 ＝ テストなど。集計に入れない
+  夜の睡眠がない日は「記録のない日」として扱い、睡眠負債や平均に入れない。
+  二度寝・昼寝の時間は、その日の睡眠時間に足す。
+*/
+const MIN_REC=10,MAIN_MIN=180;
+const recLen=r=>(new Date(r.end)-new Date(r.start))/60000;
+function buildDays(extra){
+  const days=new Map(),kind=new Map();
+  for(const r of db.records.concat(extra?[extra]:[])){
+    if(recLen(r)<MIN_REC){kind.set(r,'short');continue}
+    const k=dkey(r.end);if(!days.has(k))days.set(k,{recs:[]});days.get(k).recs.push(r);
+  }
+  for(const d of days.values()){
+    const top=d.recs.reduce((a,b)=>recLen(b)>recLen(a)?b:a);
+    d.main=recLen(top)>=MAIN_MIN?top:null;
+    for(const r of d.recs){
+      if(r===d.main)kind.set(r,'main');
+      else if(d.main){const g=(new Date(r.start)-new Date(d.main.end))/60000;kind.set(r,g>=-1&&g<=120?'second':'nap')}
+      else kind.set(r,'nap');
+    }
+    d.total=d.recs.reduce((t,r)=>t+analyze(r).sleepMin,0);
+  }
+  return{days,kind};
+}
+const KIND={main:'',second:'二度寝',nap:'昼寝',short:'集計外'};
+// 夜の睡眠がある日だけ：その日の合計睡眠時間（二度寝・昼寝をふくむ）
 function nightMap(extra){
   const m=new Map();
-  db.records.concat(extra?[extra]:[]).forEach(r=>{const k=dkey(r.end);m.set(k,(m.get(k)||0)+analyze(r).sleepMin)});
+  for(const [k,d] of buildDays(extra).days)if(d.main)m.set(k,d.total);
   return m;
 }
 function debtAt(day,map){
@@ -395,10 +422,10 @@ function missingDays(){
 // 自分に合う睡眠時間：直近60日で、気分4〜5（すっきり起きられた）日の睡眠時間の平均
 function suggestGoal(){
   const since=Date.now()-60*864e5;
-  const rated=db.records.filter(r=>r.rating&&+new Date(r.end)>=since);
-  const good=rated.filter(r=>r.rating>=4);
+  const rated=[...buildDays().days.values()].filter(d=>d.main&&d.main.rating&&+new Date(d.main.end)>=since);
+  const good=rated.filter(d=>d.main.rating>=4);
   if(rated.length<7||good.length<3)return{ready:false,need:Math.max(7-rated.length,0),needGood:Math.max(3-good.length,0)};
-  const m=avg(good.map(r=>analyze(r).sleepMin));
+  const m=avg(good.map(d=>d.total));
   return{ready:true,min:Math.min(600,Math.max(300,Math.round(m/15)*15)),n:good.length,rated:rated.length};
 }
 const debtLevel=m=>m<60?0:m<180?1:m<420?2:3;
@@ -492,8 +519,8 @@ function wakeUp(){
   stopSensors();
   closeOv('night');
   const end=new Date();
-  if(end-new Date(A.start)<10*60000&&!confirm('10分未満の記録です。保存しますか？')){
-    db.active=null;save();renderAll();return;
+  if(end-new Date(A.start)<MIN_REC*60000){
+    db.active=null;save();renderAll();toast('10分未満のため、記録しませんでした');return;
   }
   const r={id:'r'+Date.now(),start:A.start,end:end.toISOString(),rating:null,motion:A.motion||[]};
   db.pending=r;db.active=null;save();renderAll();showMorning();
@@ -532,8 +559,13 @@ function showMorning(){
   $('#mRange').textContent=hm(r.start)+' → '+hm(r.end)+(a.latency!=null?'　寝付くまで約'+a.latency+'分':'');
   $('#mSplit').style.display=a.deepPct!=null?'':'none';
   $('#mSplit').innerHTML=a.deepPct!=null?statRows([['深い眠り',dur(a.deep)+'（'+a.deepPct+'%）'],['浅い眠り',dur(a.light)],['途中で起きた',dur(a.wakeMid)]]):'';
-  const after=debtAt(new Date(),nightMap(r)).debt,df=Math.round(a.sleepMin-db.settings.goal);
-  $('#mDebt').innerHTML='現在の睡眠負債 '+(after?dur(after):'なし')+'<br><span class="sub" style="font-weight:400">昨夜は目標より'+(df<0?dur(-df)+'少なめ':df>0?dur(df)+'多め':'ぴったり')+'</span>';
+  const B=buildDays(r),k=B.kind.get(r),day=B.days.get(dkey(r.end));
+  const after=debtAt(new Date(),nightMap(r)).debt;
+  let line;
+  if(k==='main'){const df=Math.round(day.total-db.settings.goal);line=(day.recs.length>1?'今日の合計は':'昨夜は')+'目標より'+(df<0?dur(-df)+'少なめ':df>0?dur(df)+'多め':'ぴったり')}
+  else if(k==='second')line='二度寝として、今朝の睡眠に加えます';
+  else line=day&&day.main?'昼寝として、今日の睡眠時間に加えます':'昼寝として記録します（夜の睡眠の記録がない日は、睡眠負債に入りません）';
+  $('#mDebt').innerHTML='現在の睡眠負債 '+(after?dur(after):'なし')+'<br><span class="sub" style="font-weight:400">'+line+'</span>';
   buildRate($('#mRate'),r.rating,v=>{r.rating=v;save()});
   $('#mStart').value=pad(new Date(r.start).getHours())+':'+pad(new Date(r.start).getMinutes());
   $('#mEnd').value=pad(new Date(r.end).getHours())+':'+pad(new Date(r.end).getMinutes());
@@ -557,7 +589,7 @@ $('#mSave').onclick=()=>{
 /* ---------- 詳細 ---------- */
 function openDetail(id){
   const r=db.records.find(x=>x.id===id);if(!r)return;
-  const a=analyze(r),rows=[];
+  const a=analyze(r),rows=[],kd=KIND[buildDays().kind.get(r)];
   rows.push(['就寝 → 起床',hm(r.start)+' → '+hm(r.end)]);
   rows.push(['睡眠時間',dur(a.sleepMin)]);
   if(a.has){
@@ -567,7 +599,8 @@ function openDetail(id){
     rows.push(['寝付くまで',a.latency!=null?'約'+a.latency+'分':'判定できず']);
   }else rows.push(['眠りの深さ','計測なし（手入力）']);
   rows.push(['今朝の気分',r.rating?r.rating+'　'+RATE[r.rating]:'未入力']);
-  $('#dBody').innerHTML=`<h1>${dlabel(r.end)}</h1>
+  $('#dBody').innerHTML=`<h1>${dlabel(r.end)}${kd?`<span class="tag" style="font-size:1rem;vertical-align:middle">${kd}</span>`:''}</h1>
+    ${kd==='集計外'?'<p class="note" style="margin:-6px 0 6px">10分未満の記録は、睡眠負債や平均には入りません。</p>':''}
     <div class="card">${statRows(rows)}</div>
     ${a.has?`<div class="card"><div class="lbl">眠りの深さ</div><canvas id="mChart"></canvas>
       <p class="note">太い白い線＝深い眠り、薄い帯＝計測が止まっていた時間</p></div>
@@ -596,7 +629,7 @@ function drawStages(c,r,a){
   const st=a.stages,n=Math.max(st.length,1);
   const L=62,top=16,bot=h-34,pw=w-L-2,bw=pw/n;
   const rowY=s=>top+14+s*((bot-top-28)/2);
-  x.font='15px '+FONT;x.textAlign='left';
+  x.font='17px '+FONT;x.textAlign='left';
   [['目覚め',0],['浅い',1],['深い',2]].forEach(([lb,s])=>{const y=rowY(s);x.fillStyle=C.line;x.fillRect(L,y,pw,1);x.fillStyle=s===2?C.fg:C.sub;x.fillText(lb,0,y+5)});
   let prev=null;
   for(let i=0;i<n;i++){
@@ -610,7 +643,7 @@ function drawStages(c,r,a){
   }
   const t0=new Date(r.start),f=new Date(t0);f.setMinutes(0,0,0);f.setHours(f.getHours()+1);
   const step=n/60>7?2:1;
-  x.font='16px '+FONT;x.textAlign='center';
+  x.font='17px '+FONT;x.textAlign='center';
   for(const t=new Date(f);(t-t0)/60000<=n;t.setHours(t.getHours()+step)){
     const px=L+(t-t0)/60000*bw;
     if(px<L+14||px>w-14)continue;
@@ -623,7 +656,7 @@ function drawSeries(c,items,o){
   const L=o.left||56,top=30,bot=h-34,ph=bot-top,pw=w-L;
   const vals=items.map(i=>i.v).filter(v=>v!=null);
   const max=Math.max(o.min,...vals)*1.15,step=o.step(max);
-  x.font='14px '+FONT;x.textAlign='right';
+  x.font='16px '+FONT;x.textAlign='right';
   for(let g=0;g<=max;g+=step){const y=bot-g/max*ph;x.fillStyle=C.line;x.fillRect(L,y,pw,1);x.fillStyle=C.sub;x.fillText(o.axis(g),L-6,y+5)}
   const n=items.length,slot=pw/n,pts=[];
   items.forEach((it,i)=>{
@@ -633,7 +666,7 @@ function drawSeries(c,items,o){
       if(o.type==='bar'){const bw=Math.min(30,slot*.6);x.fillStyle=C.fg;x.fillRect(cx-bw/2,y,bw,Math.max(2,bot-y))}
       pts.push([cx,y,it.v]);
     }
-    if(it.label){x.fillStyle=it.today?C.fg:C.sub;x.font=(it.today?'bold ':'')+'16px '+FONT;x.textAlign='center';x.fillText(it.label,cx,h-8)}
+    if(it.label){x.fillStyle=it.today?C.fg:C.sub;x.font=(it.today?'bold ':'')+'18px '+FONT;x.textAlign='center';x.fillText(it.label,cx,h-8)}
   });
   if(o.type==='line'&&pts.length){
     x.strokeStyle=C.fg;x.lineWidth=3;x.lineJoin='round';x.beginPath();
@@ -641,7 +674,7 @@ function drawSeries(c,items,o){
     x.fillStyle=C.fg;pts.forEach(p=>{x.beginPath();x.arc(p[0],p[1],n<=7?5:3,0,7);x.fill()});
     const p=pts[pts.length-1];x.font='bold 16px '+FONT;x.textAlign='right';x.fillText(o.fmt(p[2]),Math.min(w-2,p[0]+6),p[1]-12);
   }
-  if(o.type==='bar'&&n<=7){x.fillStyle=C.sub;x.font='15px '+FONT;x.textAlign='center';pts.forEach(p=>x.fillText(o.fmt(p[2]),p[0],p[1]-11))}
+  if(o.type==='bar'&&n<=7){x.fillStyle=C.sub;x.font='17px '+FONT;x.textAlign='center';pts.forEach(p=>x.fillText(o.fmt(p[2]),p[0],p[1]-11))}
 }
 function drawBars(c,items,goal){
   const {x,w,h}=setupCanvas(c,240),C=colors();
@@ -652,7 +685,7 @@ function drawBars(c,items,goal){
   const gy=bot-goal/maxV*ph;
   // 目標の点線は棒の後ろに描き、数字が読みやすいようにする
   x.strokeStyle=C.muted;x.lineWidth=1.5;x.setLineDash([6,5]);x.beginPath();x.moveTo(0,gy);x.lineTo(w,gy);x.stroke();x.setLineDash([]);
-  x.fillStyle=C.sub;x.font='14px '+FONT;x.textAlign='left';x.fillText('点線＝目標 '+Math.floor(goal/60)+':'+pad(goal%60),0,14);
+  x.fillStyle=C.sub;x.font='16px '+FONT;x.textAlign='left';x.fillText('点線＝目標 '+Math.floor(goal/60)+':'+pad(goal%60),0,14);
   items.forEach((it,i)=>{
     const cx=slot*i+slot/2;
     if(it.v){
@@ -661,25 +694,26 @@ function drawBars(c,items,goal){
       x.beginPath();
       if(x.roundRect)x.roundRect(cx-bw/2,bot-bh,bw,bh,[Math.min(6,bw/2),Math.min(6,bw/2),0,0]);else x.rect(cx-bw/2,bot-bh,bw,bh);
       x.fill();
-      if(n<=7){const t=Math.floor(it.v/60)+':'+pad(Math.round(it.v)%60);x.font='15px '+FONT;x.textAlign='center';x.lineWidth=4;x.strokeStyle='#0e0e0e';x.strokeText(t,cx,bot-bh-7);x.fillStyle=C.fg;x.fillText(t,cx,bot-bh-7)}
+      if(n<=7){const t=Math.floor(it.v/60)+':'+pad(Math.round(it.v)%60);x.font='17px '+FONT;x.textAlign='center';x.lineWidth=4;x.strokeStyle='#0e0e0e';x.strokeText(t,cx,bot-bh-7);x.fillStyle=C.fg;x.fillText(t,cx,bot-bh-7)}
     }else{x.fillStyle=C.line;x.fillRect(cx-bw/2,bot-3,bw,3)}
-    if(it.label){x.fillStyle=it.today?C.fg:C.sub;x.font=(it.today?'bold ':'')+'16px '+FONT;x.textAlign='center';x.fillText(it.label,cx,h-8)}
+    if(it.label){x.fillStyle=it.today?C.fg:C.sub;x.font=(it.today?'bold ':'')+'18px '+FONT;x.textAlign='center';x.fillText(it.label,cx,h-8)}
   });
 }
 
 /* ---------- 画面の描画 ---------- */
-function miniCard(r){
+const kindTag=(r,K)=>{const k=K.get(r);return KIND[k]?`<span class="tag">${KIND[k]}</span>`:''};
+function miniCard(r,K){
   const a=analyze(r);
   return `<button class="card rec mini" data-id="${r.id}">
     <div class="recTop"><span>${dlabel(r.end)}</span><span>${hm(r.start)} → ${hm(r.end)}</span></div>
-    <div class="recBottom"><span class="recDur">${dur(a.sleepMin)}</span>${a.deepPct!=null?`<span>深い <b>${a.deepPct}%</b></span>`:''}</div>
+    <div class="recBottom"><span class="recDur">${dur(a.sleepMin)}</span>${kindTag(r,K).replace('class="tag"','class="tag" style="margin-left:0"')}${a.deepPct!=null?`<span>深い <b>${a.deepPct}%</b></span>`:''}</div>
   </button>`;
 }
-function summaryCard(r){
+function summaryCard(r,K){
   const a=analyze(r);
-  return `<button class="card rec" data-id="${r.id}">
+  return `<button class="card rec${K.get(r)==='short'?' dim':''}" data-id="${r.id}">
     <div class="recTop"><span>${dlabel(r.end)}</span><span class="sub">${hm(r.start)} → ${hm(r.end)}</span></div>
-    <div class="recBottom"><span class="recDur">${dur(a.sleepMin)}</span>${a.deepPct!=null?`<span>深い <b>${a.deepPct}%</b></span>`:''}${r.rating?`<span class="sub">${RATE[r.rating]}</span>`:''}</div>
+    <div class="recBottom"><span class="recDur">${dur(a.sleepMin)}</span>${kindTag(r,K).replace('class="tag"','class="tag" style="margin-left:0"')}${a.deepPct!=null?`<span>深い <b>${a.deepPct}%</b></span>`:''}${r.rating?`<span class="sub">${RATE[r.rating]}</span>`:''}</div>
   </button>`;
 }
 function renderHome(){
@@ -695,9 +729,9 @@ function renderHome(){
   $('#hNotice').innerHTML=notes.join('');
   if($('#hBackup'))$('#hBackup').onclick=doExport;
   if(!A){
-    m.innerHTML=`<button class="btn primary big" id="goSleep">計測を開始する</button>
+    m.innerHTML=`<button class="btn primary big" id="goSleep">計測開始</button>
       <p class="center sub" style="margin:12px 0 0">目標 ${dur(db.settings.goal)}</p>${(()=>{const g=suggestGoal();return g.ready&&Math.abs(g.min-db.settings.goal)>=30?`<p class="note center" style="margin-top:2px">合う睡眠時間：約${dur(g.min)}（設定で変更）</p>`:''})()}`;
-    $('#goSleep').onclick=()=>openOv('start');
+    $('#goSleep').onclick=()=>{$$('.check li').forEach(l=>l.classList.add('on'));openOv('start')};
   }else if(S){
     m.innerHTML=`<div class="card center"><div class="eyebrow">計測中</div><div class="big-num" id="hElapsed">${dur((Date.now()-new Date(A.start))/60000)}</div><div class="sub">${hm(A.start)} から</div></div>
       <button class="btn primary big" id="hWake">起きた</button>
@@ -714,10 +748,10 @@ function renderHome(){
     $('#hResume').onclick=()=>startSleep(true);
     $('#hCancel').onclick=cancelSleep;
   }
-  const last=sorted().slice(0,2);
-  $('#hLast').innerHTML=last.length?`<h2>直近の記録</h2>${last.map(miniCard).join('')}`
-    :`<p class="center sub" style="margin-top:36px">まだ記録はありません。<br>寝る前に「計測を開始する」を押してください。</p>`;
-  fitHome();
+  const K=buildDays().kind,last=sorted().filter(r=>K.get(r)!=='short').slice(0,2);
+  $('#hLast').innerHTML=last.length?`<h2>直近の記録</h2>${last.map(r=>miniCard(r,K)).join('')}`
+    :`<p class="center sub" style="margin-top:36px">まだ記録はありません。<br>寝る前に「計測開始」を押してください。</p>`;
+  fitHome();requestAnimationFrame(fitHome);
 }
 // ホームがスクロールしないように：入りきらない記録カードは外す
 const homeLock=()=>isStandalone||!isIOS; // Safariで開いている間（ホーム画面に追加の案内中）はスクロール可
@@ -726,9 +760,12 @@ function fitHome(){
   document.documentElement.classList.toggle('lock',v.classList.contains('on')&&homeLock());
   v.style.height=homeLock()?'':'auto';v.style.overflow=homeLock()?'':'visible';
   if(!v.classList.contains('on')||!homeLock())return;
-  const box=$('#hLast');
+  v.classList.remove('compact');
+  const box=$('#hLast'),over=()=>box.scrollHeight>box.clientHeight+1||v.scrollHeight>v.clientHeight+1;
+  // 入りきらないときは、まず時計を小さくし、それでも入らなければ記録カードを減らす
+  if(over())v.classList.add('compact');
   let cards=box.querySelectorAll('.rec');
-  for(let i=cards.length-1;i>=0&&box.scrollHeight>box.clientHeight+1;i--)cards[i].remove();
+  for(let i=cards.length-1;i>=0&&over();i--)cards[i].remove();
   if(!box.querySelector('.rec')&&box.querySelector('h2'))box.querySelector('h2').remove();
 }
 function renderHist(){
@@ -739,17 +776,16 @@ function renderHist(){
       <div class="lv">${[0,1,2,3].map(i=>`<i class="${i<=debtLevel(D.debt)?'f':''}"></i>`).join('')}</div>
       <div class="lvl"><span>少ない</span><span>多い</span></div>
       <div class="debtWord" style="margin-top:10px">${debtWord(D.debt)}</div>
-      <p class="note">直近14日のうち${D.nights}日分の記録から計算${D.nights<7?'<br>（記録が増えるほど正確になります）':''}</p>
       ${miss.length?`<button class="btn" id="hMiss" style="margin-top:16px">記録のない日が${miss.length}日あります<br><span style="font-weight:400;font-size:1rem">手入力する</span></button>
       <p class="note">記録のない日は計算に入らないので、負債が少なく見えます。</p>`:''}
     </div>`:'';
   if($('#hMiss'))$('#hMiss').onclick=()=>openEdit(null,miss[miss.length-1]);
   const n=period,goal=db.settings.goal;
   const today=new Date();today.setHours(0,0,0,0);
-  const items=[],debts=[],deeps=[],map=nightMap();
+  const items=[],debts=[],deeps=[],B=buildDays(),map=nightMap();
   for(let i=n-1;i>=0;i--){
     const d=new Date(today);d.setDate(d.getDate()-i);
-    const an=db.records.filter(r=>sameDay(new Date(r.end),d)).map(analyze);
+    const day=B.days.get(dkey(d)),an=day&&day.main?day.recs.map(analyze):[];
     const label=n<=7?WD[d.getDay()]:(i%7===0?(d.getMonth()+1)+'/'+d.getDate():'');
     const isToday=i===0&&n<=7;
     items.push({v:an.length?an.reduce((s,a)=>s+a.sleepMin,0):null,label,today:isToday});
@@ -762,23 +798,26 @@ function renderHist(){
   drawSeries($('#debtChart'),debts,{type:'line',min:120,step:mx=>mx>900?300:mx>480?180:60,axis:g=>g/60+'時間',fmt:m=>m<1?'なし':dur(m),left:60});
   drawSeries($('#deepChart'),deeps,{type:'bar',min:30,step:mx=>mx>60?20:10,axis:g=>g+'%',fmt:v=>v+'%',left:48});
   const since=new Date(today);since.setDate(since.getDate()-(n-1));
-  const recs=db.records.filter(r=>new Date(r.end)>=since);
+  const mains=[...B.days.values()].filter(d=>d.main&&new Date(d.main.end)>=since);
+  const recs=mains.map(d=>d.main);
   if(!recs.length){
     $('#stats').innerHTML='<p class="sub center" style="margin:0">この期間の記録はまだありません</p>';
   }else{
-    const as=recs.map(r=>({r,a:analyze(r)}));
+    const as=recs.map(r=>({r,a:analyze(r)})),naps=[...B.days.values()].filter(d=>new Date(d.recs[0].end)>=since).reduce((n,d)=>n+d.recs.filter(r=>B.kind.get(r)==='nap').length,0);
     const bed=as.map(o=>clockMin(o.r.start,12)),wake=as.map(o=>clockMin(o.r.end,18));
     const dps=as.filter(o=>o.a.deepPct!=null).map(o=>o.a.deepPct);
     $('#stats').innerHTML=statRows([
       ['記録した日',recs.length+'日'],
-      ['平均睡眠時間',dur(avg(as.map(o=>o.a.sleepMin)))],
+      ['平均睡眠時間',dur(avg(mains.map(d=>d.total)))],
       ['平均の深い眠り',dps.length?Math.round(avg(dps))+'%':'計測なし'],
       ['平均就寝時刻',fromClockMin(avg(bed),12)],
       ['平均起床時刻',fromClockMin(avg(wake),18)],
-      ['就寝時刻のばらつき',recs.length>=2?'±'+Math.round(std(bed))+'分':'—']
-    ])+(recs.length>=3?`<p class="note">就寝時刻のばらつきは、±30分以内ならとても規則的です。</p>`:'');
+      ['就寝時刻のばらつき',recs.length>=2?'±'+Math.round(std(bed))+'分':'—'],
+      ...(naps?[['昼寝',naps+'回']]:[])
+    ])+`<p class="note">夜の睡眠（3時間以上）がある日だけで計算しています。睡眠時間には二度寝・昼寝をふくみます。就寝・起床時刻は夜の睡眠だけで計算しています。</p>`+(recs.length>=3?`<p class="note">就寝時刻のばらつきは、±30分以内ならとても規則的です。</p>`:'');
   }
-  $('#list').innerHTML=sorted().map(summaryCard).join('');
+  const K=buildDays().kind;
+  $('#list').innerHTML=sorted().map(r=>summaryCard(r,K)).join('');
 }
 function renderAll(){
   renderHome();
@@ -822,13 +861,11 @@ function renderSettings(){
   $('#sGoal').value=db.settings.goal;
   const g=suggestGoal();
   $('#sSuggest').innerHTML=g.ready
-    ?`<p style="margin:0">すっきり起きられた日（気分4〜5）は、平均<b style="font-size:1.4rem"> ${dur(g.min)} </b>眠っていました。</p>
-      <p class="note">直近60日、気分を入れた${g.rated}日のうち${g.n}日分から計算しています。</p>
-      ${g.min!==db.settings.goal?`<button class="btn primary" id="sApply" style="margin-top:14px">${dur(g.min)}を目標にする</button>`:'<p class="note"><b>現在の目標と同じです。</b></p>'}`
-    :`<p class="note" style="margin-top:0">朝の気分を記録していくと、すっきり起きられた日の睡眠時間から、自分に合う睡眠時間を出します。</p>
-      <p class="note">あと${g.need?'気分の記録が'+g.need+'日':''}${g.need&&g.needGood?'、':''}${g.needGood?'「良い」か「すっきり」の日が'+g.needGood+'日':''}必要です。</p>`;
+    ?`<div class="setbig">${dur(g.min)}</div>
+      ${g.min!==db.settings.goal?`<button class="btn primary" id="sApply" style="margin-top:14px">目標にする</button>`:'<div class="setline">現在の目標と同じです</div>'}`
+    :`<div class="setline">気分の記録が足りません</div><div class="setline sub">あと${Math.max(g.need,g.needGood)}日で表示されます</div>`;
   if($('#sApply'))$('#sApply').onclick=()=>{db.settings.goal=g.min;save();renderAll();toast('目標を'+dur(g.min)+'にしました')};
-  $('#sLastBk').textContent=db.lastBackup?'前回の書き出し：'+dlabel(db.lastBackup):'まだ書き出していません';
+  $('#sLastBk').textContent=db.lastBackup?'前回：'+dlabel(db.lastBackup):'まだ書き出していません';
 }
 $('#sGoal').onchange=e=>{db.settings.goal=+e.target.value;save();renderAll()};
 async function doExport(){
@@ -874,6 +911,7 @@ $('#period').onclick=e=>{
   const b=e.target.closest('button');if(!b)return;
   period=+b.dataset.v;[...$('#period').children].forEach(x=>x.classList.toggle('on',x===b));renderHist();
 };
+$('.check').onclick=e=>{const li=e.target.closest('li');if(li)li.classList.toggle('on')};
 $('#stGo').onclick=()=>{closeOv('start');startSleep(false)};
 document.addEventListener('click',e=>{
   const c=e.target.closest('[data-close]');
@@ -885,6 +923,7 @@ document.addEventListener('visibilitychange',()=>{
   if(document.visibilityState==='visible'&&S)lockScreen();
 });
 let rzT;window.addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout(renderAll,200)});
+window.addEventListener('load',fitHome);
 const setText=(el,t)=>{if(el&&el.textContent!==t)el.textContent=t};
 function updClock(){
   const d=new Date(),t=d.getHours()+':'+pad(d.getMinutes());
